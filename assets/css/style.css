@@ -1,5 +1,12 @@
+/* == GLOBAL STYLES == */
 *{
     font-family: 'Audiowide', cursive, monospace;
+    color: #032B43;
+}
+
+
+body{
+    background-color: white;
 }
 
 /* Google home image */
@@ -8,7 +15,9 @@
   'FILL' 0,
   'wght' 400,
   'GRAD' 0,
-  'opsz' 40
+  'opsz' 48;
+
+  font-size: clamp(24px, 2.5vw, 36px) !important; /*overrides default font size defined by google*/
 }
 
 /* == HEADER ELEMENTS STYLING == */
@@ -22,8 +31,4 @@ header h1 {
     font-size: 32px;
     flex-grow: 1;
     text-align: center;
-}
-
-body{
-    background-color: beige;
 }
