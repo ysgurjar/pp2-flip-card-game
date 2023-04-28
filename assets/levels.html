@@ -35,7 +35,25 @@
     <!--The div containing wavy background-->
     <div class="wave-container">
     </div>
-    <!--div containing remaning time and flips statistics-->
+    <!--level selector wrapper-->
+    <div class="level-selector-wrapper">
+        <!--level selector-->
+        <div class="level-selector"></div>
+        <div class="level-selector"></div>
+        <div class="level-selector"></div>
+        <div class="level-selector"></div>
+        <div class="level-selector"></div>
+    </div>
+    <!--slider wrapper-->
+    <div class="slider-wrapper">
+        <!--slider-->
+        <label for="memorySlider">Memory</label>
+        <input type="range" min="0" max="5" value="1" class="slider" id="memorySlider">
+        <label for="accuracySlider">Accuracy</label>
+        <input type="range" min="0" max="5" value="1" class="slider" id="accuracySlider">
+        <label for="speedSlider">Speed</label>
+        <input type="range" min="0" max="5" value="1" class="slider" id="speedSlider">
+    </div>
 
     <a href="/assets/game.html">Game</a>
 </body>

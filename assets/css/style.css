@@ -25,7 +25,7 @@ body{
   font-size: clamp(24px, 2.5vw, 36px) !important; /*overrides default font size defined by google*/
 }
 
-/* == HEADER ELEMENTS STYLING == */
+/* == HEADER ELEMENTS STYLES == */
 header {
     /*flex display settings */
     display: flex;
@@ -51,8 +51,42 @@ header h1 {
     flex-grow: 1;
 }
 
-/* == MAIN ELEMENT STYLE == */
+/* == MAIN ELEMENT STYLES == */
 .wave-container{
     height: clamp(50px,2.5vw,100px);
     background-image: url("/assets/images/wavesOpacity.svg");
+}
+
+/* == levels.html page STYLES == */
+
+/* level selector wrapper style */
+.level-selector-wrapper {
+    display: flex;
+    flex-wrap:wrap ;
+    justify-content: center;
+    gap:10px 5px;
+}
+/* level selector circles style */
+.level-selector {
+    background: #ffdd92;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+/* slider display wrapper style */
+.slider-wrapper {
+    /* grid properties */
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-row-gap: 10px;
+
+    /* div properties */
+    max-width: fit-content;
+    text-align: right;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
 }
