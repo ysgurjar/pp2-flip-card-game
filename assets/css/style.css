@@ -91,3 +91,20 @@ header h1 {
     margin-right: auto;
     margin-top: 30px;
 }
+
+.rules-wrapper {
+    /* grid properties */
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-row-gap: 12px;
+    grid-column-gap: 8px;
+
+    /* div properties */
+    max-width: fit-content;
+    text-align: right;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
