@@ -2,16 +2,17 @@
  * The function resets the background color on level selector and make sure only one level is selected
  */
 
-function resetBg() {
-    //Get HTMl collection of level selector
+function resetBg(selectedLevel) {
+
+    //First, reset bg color to yellow on all level selectors
     let levels = document.getElementsByClassName("level-selector");
 
-    //reset background color
     for (let index = 0; index < levels.length; index++) {
-
         const element = levels[index];
-        element.style.backgroundColor = '#ffdd92';
+        element.style.backgroundColor = '#ffdd92'; //resetting color
     }
+    // Second, set the light blue color only on selected level
+    selectedLevel.style.backgroundColor = "#5a9cc6"; //set background for selected level
 }
 
 //Get HTMl collection of level selector
@@ -19,19 +20,16 @@ let levels = document.getElementsByClassName("level-selector");
 
 //attach event listener
 for (let index = 0; index < levels.length; index++) {
-
     const element = levels[index];
+    const levelSelected = element.innerText;
     element.addEventListener('click', function () {
-        resetBg(); //clears background from other selected level
-        element.style.backgroundColor = "#5a9cc6";  //set background for highlighted level
-        document.getElementById("level-id-text-on-CTA").innerText=element.innerText; //changing innertext of level-2;
+        resetBg(element); //clears bg from other levels and set bg on selected level
+        document.getElementById("level-id-text-on-CTA").innerText = element.innerText; //changing innertext of CTA button;
     })
 }
 
-
 //Get HTML collection of slider
 sliders = document.getElementsByClassName("slider");
-
 
 //Disable slider
 for (let index = 0; index < sliders.length; index++) {
