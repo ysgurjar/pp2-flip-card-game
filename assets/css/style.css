@@ -57,6 +57,16 @@ header h1 {
     background-image: url("/assets/images/wavesOpacity.svg");
 }
 
+.main-wrapper {
+    display: grid;
+    grid-template-rows: 2fr 2fr 1fr 1fr;
+
+    justify-content: center;
+    row-gap: 12px;
+
+    font-size: clamp(14px,1.5vw,16px);
+    text-align: center;
+}
 /* == levels.html page STYLES == */
 
 /* level selector wrapper style */
