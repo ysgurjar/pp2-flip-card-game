@@ -20,10 +20,12 @@ let levels = document.getElementsByClassName("level-selector");
 
 //attach event listener
 for (let index = 0; index < levels.length; index++) {
-    const element = levels[index];
-    const levelSelected = element.innerText;
+    const levelElement = levels[index];
+    const levelSelected = parseInt(levelElement.innerText);
     element.addEventListener('click', function () {
-        resetBg(element); //clears bg from other levels and set bg on selected level
+        resetBg(levelElement);          //clears bg from other levels and set bg on selected level
+        resetSlider(levelSelected);     //set slider level according to selected level
+        resetRules(levelSelected);      //set rules according to selected level
         document.getElementById("level-id-text-on-CTA").innerText = element.innerText; //changing innertext of CTA button;
     })
 }
