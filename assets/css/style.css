@@ -80,7 +80,8 @@ header h1 {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr 1fr;
-    grid-row-gap: 10px;
+    grid-row-gap: 12px;
+    grid-column-gap:8px;
 
     /* div properties */
     max-width: fit-content;
