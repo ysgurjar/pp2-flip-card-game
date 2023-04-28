@@ -23,7 +23,7 @@ for (let index = 0; index < levels.length; index++) {
     const levelElement = levels[index];
     const levelSelected = parseInt(levelElement.innerText);
     levelElement.addEventListener('click', function () {
-        // resetBg(levelElement);          //clears bg from other levels and set bg on selected level
+        resetBg(levelElement);          //clears bg from other levels and set bg on selected level
         // resetSlider(levelSelected);     //set slider level according to selected level
         // resetRules(levelSelected);      //set rules according to selected level
         document.getElementById("level-id-text-on-CTA").innerText = levelElement.innerText; //changing innertext of CTA button;
