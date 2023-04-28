@@ -22,9 +22,9 @@ for (let index = 0; index < levels.length; index++) {
 
     const element = levels[index];
     element.addEventListener('click', function () {
-        debugger;
-        resetBg(); //clears backgroun from other selected level
-        element.style.backgroundColor = "#5a9cc6";
+        resetBg(); //clears background from other selected level
+        element.style.backgroundColor = "#5a9cc6";  //set background for highlighted level
+        document.getElementById("level-id-text-on-CTA").innerText=element.innerText; //changing innertext of level-2;
     })
 }
 
