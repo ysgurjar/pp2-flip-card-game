@@ -65,6 +65,10 @@ header h1 {
     flex-wrap:wrap ;
     justify-content: center;
     gap:10px 5px;
+
+    /* center text */
+    text-align: center;
+    line-height: 50px; /* same as div */
 }
 /* level selector circles style */
 .level-selector {
