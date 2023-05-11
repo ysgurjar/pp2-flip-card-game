@@ -18,6 +18,9 @@ levelData={
         cards:16,
         flipsMax:999,
         timeMax:"30:00"
+    },
+    3:{
+        memory:2
     }
 }
 
@@ -38,9 +41,25 @@ function resetBg(selectedLevelElement) {
 }
 
 /**
- * The function resets the slider to represent current level stats
+ * The function displays rules according to the selected level
  */
 function resetSlider(selectedLevel) {
+    
+    //Get values
+    cards=String(levelData[selectedLevel]["cards"]);
+    flipsMax=String(levelData[selectedLevel]["flipsMax"]);
+    timeMax=String(levelData[selectedLevel]["timeMax"]);
+    
+    //Set values
+    document.getElementById("no-of-cards").innerText=cards;
+    document.getElementById("no-of-max-flips").innerText=flipsMax;
+    document.getElementById("time-limit").innerText=timeMax;
+}
+
+/**
+ * The function resets the slider to represent current level stats
+ */
+function resetRules(selectedLevel) {
     
     //Get values
     memory=String(levelData[selectedLevel]["memory"]);
@@ -63,7 +82,7 @@ for (let index = 0; index < levels.length; index++) {
     levelElement.addEventListener('click', function () {
         resetBg(levelElement);          //clears bg from other levels and set bg on selected level
         resetSlider(levelSelected);     //set slider level according to selected level
-        // resetRules(levelSelected);      //set rules according to selected level
+        resetRules(levelSelected);      //set rules according to selected level
         document.getElementById("level-id-text-on-CTA").innerText = levelElement.innerText; //changing innertext of CTA button;
     })
 }
