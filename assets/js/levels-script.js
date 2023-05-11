@@ -71,11 +71,9 @@ function resetRules(selectedLevel) {
     document.getElementById("speed-slider").setAttribute("value", speed);
 }
 
-
 /**
  * The function storage locally info related to selected level
  */
-
 function setLocalstorage(selectedLevel) {
         
     //Get values
@@ -92,7 +90,7 @@ function setLocalstorage(selectedLevel) {
 //Get HTMl collection of level selector
 let levels = document.getElementsByClassName("level-selector");
 
-//attach event listener
+//attach event listener to level selector elements
 for (let index = 0; index < levels.length; index++) {
     const levelElement = levels[index];
     const levelSelected = parseInt(levelElement.innerText);
@@ -107,6 +105,10 @@ for (let index = 0; index < levels.length; index++) {
        
     })
 }
+
+//attach event listener to play btn
+playBtn=document.getElementById("play-btn")
+playBtn.addEventListener('click',)
 
 //Get HTML collection of slider
 sliders = document.getElementsByClassName("slider");
