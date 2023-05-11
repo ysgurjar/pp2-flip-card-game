@@ -106,10 +106,6 @@ for (let index = 0; index < levels.length; index++) {
     })
 }
 
-//attach event listener to play btn
-playBtn=document.getElementById("play-btn")
-playBtn.addEventListener('click',)
-
 //Get HTML collection of slider
 sliders = document.getElementsByClassName("slider");
 
