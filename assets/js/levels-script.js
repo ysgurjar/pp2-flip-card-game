@@ -1,5 +1,4 @@
 //initialise global objects
-
 levelData={
     1:{
         memory:1,
@@ -72,6 +71,24 @@ function resetRules(selectedLevel) {
     document.getElementById("speed-slider").setAttribute("value", speed);
 }
 
+
+/**
+ * The function storage locally info related to selected level
+ */
+
+function setLocalstorage(selectedLevel) {
+        
+    //Get values
+    cards=String(levelData[selectedLevel]["cards"]);
+    flipsMax=String(levelData[selectedLevel]["flipsMax"]);
+    timeMax=String(levelData[selectedLevel]["timeMax"]);
+
+    //Set local storage
+    window.localStorage.setItem("level",selectedLevel);
+    window.localStorage.setItem("cards",cards);
+    window.localStorage.setItem("flipsMax",flipsMax);
+    window.localStorage.setItem("timeMax",timeMax);
+}
 //Get HTMl collection of level selector
 let levels = document.getElementsByClassName("level-selector");
 
@@ -84,6 +101,10 @@ for (let index = 0; index < levels.length; index++) {
         resetSlider(levelSelected);     //set slider level according to selected level
         resetRules(levelSelected);      //set rules according to selected level
         document.getElementById("level-id-text-on-CTA").innerText = levelElement.innerText; //changing innertext of CTA button;
+        
+        //set local storage
+        setLocalstorage(levelSelected);
+       
     })
 }
 
