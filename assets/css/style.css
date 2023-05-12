@@ -50,7 +50,7 @@ header h1 {
     text-decoration: underline;
 }
 
-.game-stats {
+#game-stats {
     display: none; /* changes to display:block when game.html is loaded*/
     flex-grow: 1;
 }
