@@ -1,36 +1,48 @@
+/* GLOBAL VARIABLES */
+:root {
+    --card-height: 160px;
+    --card-width:100px;
+
+    --grid-no-of-rows:5;
+    --grid-no-of-cols:5;
+}
+
 /* == GLOBAL STYLES == */
-*{
+* {
     /*instructing broswer to account for any border and padding in specified element's width */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-   
+
     /* font style */
     font-family: 'Audiowide', cursive, monospace;
     color: #032B43;
 }
 
-body{
+body {
     background-color: white;
 }
 
 /* Google home image */
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48;
+    font-variation-settings:
+        'FILL'0,
+        'wght'400,
+        'GRAD'0,
+        'opsz'48;
 
-  font-size: clamp(24px, 2.5vw, 36px) !important; /*overrides default font size defined by google*/
+    font-size: clamp(24px, 2.5vw, 36px) !important;
+    /*overrides default font size defined by google*/
 }
 
 /* == HEADER ELEMENTS STYLES == */
 header {
     /*flex display settings */
     display: flex;
-    justify-content: center; /* centers horizontally in a viewport */
-    align-items: center;     /* centers vertically within a flex row */
+    justify-content: center;
+    /* centers horizontally in a viewport */
+    align-items: center;
+    /* centers vertically within a flex row */
 
     background-color: #FFBA08;
 }
@@ -39,7 +51,8 @@ header h1 {
     font-size: 32px;
     flex-grow: 1;
     text-align: center;
-    display: block; /* changes to display:none when game.html is loaded */
+    display: block;
+    /* changes to display:none when game.html is loaded */
 }
 
 .home {
@@ -51,13 +64,14 @@ header h1 {
 }
 
 #game-stats {
-    display: none; /* changes to display:block when game.html is loaded*/
+    display: none;
+    /* changes to display:block when game.html is loaded*/
     flex-grow: 1;
 }
 
 /* == MAIN ELEMENT STYLES == */
-.wave-container{
-    height: clamp(50px,2.5vw,100px);
+.wave-container {
+    height: clamp(50px, 2.5vw, 100px);
     background-image: url("/assets/images/wavesOpacity.svg");
 }
 
@@ -69,7 +83,7 @@ header h1 {
     align-items: center;
     row-gap: 4px;
 
-    font-size: clamp(14px,1.5vw,16px);
+    font-size: clamp(14px, 1.5vw, 16px);
     text-align: center;
 }
 
@@ -88,6 +102,7 @@ header h1 {
     background-color: white;
     border-radius: 8px;
 }
+
 /* shadow properties are courtsey of https://uiverse.io/absoluteSTrange/cowardly-sloth-96 */
 .shadow {
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
@@ -96,8 +111,8 @@ header h1 {
 }
 
 .flip-vertical-right {
-	-webkit-animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-	        animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    -webkit-animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: flip-vertical-right 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
 }
 
 /* ----------------------------------------------
@@ -112,27 +127,30 @@ header h1 {
  * animation flip-vertical-right
  * ----------------------------------------
  */
- @-webkit-keyframes flip-vertical-right {
+@-webkit-keyframes flip-vertical-right {
     0% {
-      -webkit-transform: rotateY(0);
-              transform: rotateY(0);
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
     }
+
     100% {
-      -webkit-transform: rotateY(180deg);
-              transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
     }
-  }
-  @keyframes flip-vertical-right {
+}
+
+@keyframes flip-vertical-right {
     0% {
-      -webkit-transform: rotateY(0);
-              transform: rotateY(0);
+        -webkit-transform: rotateY(0);
+        transform: rotateY(0);
     }
+
     100% {
-      -webkit-transform: rotateY(180deg);
-              transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
     }
-  }
-  
+}
+
 
 #demo-area {
     background-color: aqua;
@@ -144,14 +162,16 @@ header h1 {
 /* level selector wrapper style */
 .level-selector-wrapper {
     display: flex;
-    flex-wrap:wrap ;
+    flex-wrap: wrap;
     justify-content: center;
-    gap:10px 5px;
+    gap: 10px 5px;
 
     /* center text */
     text-align: center;
-    line-height: 50px; /* same as div */
+    line-height: 50px;
+    /* same as div */
 }
+
 /* level selector circles style */
 .level-selector {
     background-color: #ffdd92;
@@ -160,10 +180,11 @@ header h1 {
     height: 50px;
 }
 
-.level-selector:hover{
+.level-selector:hover {
     text-decoration: underline;
     background-color: #FFBA09;
 }
+
 /* slider display wrapper style */
 .slider-wrapper {
     /* grid properties */
@@ -171,7 +192,7 @@ header h1 {
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-row-gap: 12px;
-    grid-column-gap:8px;
+    grid-column-gap: 8px;
 
     /* div properties */
     max-width: fit-content;
@@ -205,15 +226,39 @@ header h1 {
     border-color: #032B43;
     width: 240px;
     height: 48px;
-    
+
     font-size: 20px;
     color: #FFBA08;
     text-align: center;
-    line-height: 48px;  /* vertically aligns text inside div */
+    line-height: 48px;
+    /* vertically aligns text inside div */
 
-    margin:auto;        /* horiozntally aligns div itself */
+    margin: auto;
+    /* horiozntally aligns div itself */
     margin-top: 28px;
 }
-.cta:hover{
+
+.cta:hover {
     text-decoration: underline;
 }
+
+/* == game.html page STYLES == */
+
+#cards-area {
+    padding: 8px;
+    max-width: 1440px;
+    margin: auto;
+}
+
+#cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-no-of-cols), 1fr);
+    grid-template-rows: repeat(var(--grid-no-of-rows), minmax(160px, 10fr));
+    gap: 10px;
+}
+
+.card2 {
+    border: 2px solid #e7e7e7;
+    border-radius: 4px;
+}
+
