@@ -29,14 +29,14 @@ function addElement() {
     // add text to child divs
 
     frontText = document.createTextNode("Front side");
-    
 
-    backImg=document.createElement("img");
-    backImg.setAttribute("src","/assets/images/cloud.png");
+
+    backImg = document.createElement("img");
+    backImg.setAttribute("src", "/assets/images/cloud.png");
     backImg.setAttribute("class", "imgOnCard");
 
     front.appendChild(frontText);
-    
+
 
     back.appendChild(backImg);
 
@@ -55,13 +55,13 @@ cards.forEach(element => {
     element.addEventListener('click', function () {
 
         //run click counter, returns no of cards flipped
-        let cardsFlipped=clickCounter();
+        let cardsFlipped = clickCounter();
         console.log(cardsFlipped);
         //flip the card if the card is not already flipped and it is one of the first two cards
-        flipCard(element,cardsFlipped);
-        
+        flipCard(element, cardsFlipped);
+
         //flow if two cards are flipped
-        if (cardsFlipped==2) {
+        if (cardsFlipped == 2) {
             twoCardsFlipped();
         }
     })
@@ -75,7 +75,7 @@ clickOnCards = 0;
 
 function flipCard(element, cardsFlipped) {
 
-    
+
     //check if card already flipped?
     isFlipped = element.classList.contains("flipcard");
 
@@ -98,35 +98,61 @@ function flipCard(element, cardsFlipped) {
  * counts clicks on card
  */
 function clickCounter() {
-    
+
     return ++clickOnCards;
 }
 
-function twoCardsFlipped (){
-    //check bg images
-    flippedCards=document.getElementsByClassName("flipCard");
-    debugger;
-    flippedCard1bg=flippedCards[0].lastChild;
-    flippedCard2bg=flippedCards[1].lastChild;
+function twoCardsFlipped() {
 
-    isMatch=flippedCard1bg.isEqualNode(flippedCard2bg);
+    //disable clickevents on all cards
+
+    for (let index = 0; index < cards.length; index++) {
+
+        const element = cards[index];
+        element.classList.add("noClick");
+
+    }
+
+    //check bg images
+
+    flippedCards = document.getElementsByClassName("flipCard");
+
+    flippedCard1bg = flippedCards[0].lastChild;
+    flippedCard2bg = flippedCards[1].lastChild;
+
+    isMatch = flippedCard1bg.isEqualNode(flippedCard2bg);
     console.log(isMatch);
-    
+
     // if images match, 
     if (!isMatch) {
         //increase score
 
+        //add a revealed class
+        flippedCards[0].classList.add("revealed");
+        flippedCards[0].classList.add("revealed");
         //set click counter back to zero
-        clickCounter=0;
+        clickOnCards = 0;
+
     } else {
-         //otherwise 
-        //start counter for 4 sec
-        setTimeout(function() {
+
+        // after 4 sec, flip cards back and enable click events
+        setTimeout(function () {
+
             flippedCards[0].classList.toggle("flipCard");
             flippedCards[0].classList.toggle("flipCard"); // using index 0 again because HTML collection was updated after 1st line
-            clickCounter=0;
-        },5000);
-        //flip them back
+
+            // enable click events on unrevealed cards
+            for (let index = 0; index < cards.length; index++) {
+                const element = cards[index];
+
+                if (!element.classList.contains("revealed")) {
+                    element.classList.remove("noClick");
+                }
+            }
+
+        }, 4000);
+
         //set click counter back to zero
+        clickOnCards = 0;
     }
 }
