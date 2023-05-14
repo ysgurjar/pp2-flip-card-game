@@ -10,30 +10,99 @@ document.getElementById("game-stats").style.textAlign = "center";
 document.getElementById("title").style.display = "none";
 
 
-// dynamically create card elements and assign a pair of random images to a rendom set of cards
+
+// dynamically create card elements 
 for (let index = 0; index < 10; index++) {
+    
     addElement();
 }
 
+// get all the cards
+cards = document.querySelectorAll(".card2");
+
+
+// create an array containing no / index of cards starting with card no 1 
+let numberOfUnassignedCards = [];
+
+for (let index = 0; index < cards.length; index++) {
+    numberOfUnassignedCards[index] = index + 1; //card 0 does not exist
+    console.log(numberOfUnassignedCards[index]);
+}
+
+// create an array containing images patch
+cardImages = [
+    "/assets/images/game-angry-bird.png",
+    "/assets/images/game-bee.png",
+    "/assets/images/game-bird-blue.png",
+    "/assets/images/game-cloud.png",
+    "/assets/images/game-cockroach.png",
+    "/assets/images/game-discoball.png",
+    "/assets/images/game-eel.png",
+    "/assets/images/game-fish-2.png",
+    "/assets/images/game-fish.png",
+    "/assets/images/game-football.png",
+    "/assets/images/game-lion.png",
+    "/assets/images/game-mosquito.png",
+    "/assets/images/game-mountain-2.png",
+    "/assets/images/game-mountain.png",
+    "/assets/images/game-pokemon.png",
+    "/assets/images/game-star-yellow.png",
+    "/assets/images/game-star.png"
+];
+
 // ======assign a pair of random images to a random pair of cards=====
+assignCards();
+
+function assignCards() {
+
+    let index = 0;
+
+    while (numberOfUnassignedCards.length > 0) {
 
 
-// create an array containing images name
+        // --select two random cards from the cards array--
 
-// create an array containing cards, create a copy
+        debugger;
+        // select random first card
+        let oneOftwo = Math.floor(Math.random() * numberOfUnassignedCards.length); //reading random index
+        let cardOnGrid = numberOfUnassignedCards[oneOftwo]; //reading the value against random index i.e. card no on grid.
+        console.log(oneOftwo);
 
-// select one image from image array
+        // select a random image and create img element
+        let backImg = document.createElement("img");
+        backImg.setAttribute("src", cardImages[index]);
+        backImg.setAttribute("class", "imgOnCard");
 
-// select two random cards from the cards array
+        // assigning random image to first card 
+        let backSide = cards[cardOnGrid - 1].lastChild;
+        backSide.appendChild(backImg.cloneNode(true));
 
-// assign one image to two random cards
 
-// pop the image out of the img array, so that it doesn't get reassigned
+        // remove the first selected card from further selection
+        numberOfUnassignedCards.splice(oneOftwo, 1);
 
-// pop two assigned cards from the cards array so that it doesn't get reassigned
+        // select second card
+        let twoOftwo = Math.floor(Math.random() * numberOfUnassignedCards.length); //reading random index
+        cardOnGrid = numberOfUnassignedCards[twoOftwo]; //reading the value against random index i.e. card no on grid.
+        console.log(twoOftwo);
 
-// repeat until all cards are assigned.
 
+        // assigning random image to second card 
+        backSide = cards[cardOnGrid - 1].lastChild;
+        backSide.appendChild(backImg.cloneNode(true));
+
+
+        // remove the second selected card from further selection
+        numberOfUnassignedCards.splice(twoOftwo, 1);
+
+        // pop the image out of the img array, so that it doesn't get reassigned
+        delete cardImages[index];
+
+        // repeat until all cards are assigned.
+        index++;
+    }
+
+}
 
 function addElement() {
     // create a new div element
@@ -46,21 +115,21 @@ function addElement() {
     const back = document.createElement("div");
     back.setAttribute("class", "back");
 
-    // add text to child divs
+    // // add text to child divs
 
-    frontText = document.createTextNode("Front side");
-
-
-    backImg = document.createElement("img");
-    backImg.setAttribute("src", "/assets/images/cloud.png");
-    backImg.setAttribute("class", "imgOnCard");
-
-    front.appendChild(frontText);
+    // frontText = document.createTextNode("Front side");
 
 
-    back.appendChild(backImg);
+    // backImg = document.createElement("img");
+    // backImg.setAttribute("src", "/assets/images/game-cloud.png");
+    // backImg.setAttribute("class", "imgOnCard");
 
-    // append child divs
+    // front.appendChild(frontText);
+
+
+    // back.appendChild(backImg);
+
+    // // append child divs
     newDiv.appendChild(front);
     newDiv.appendChild(back);
 
@@ -69,7 +138,7 @@ function addElement() {
     currentDiv.appendChild(newDiv);
 }
 
-cards = document.querySelectorAll(".card2");
+
 
 cards.forEach(element => {
     element.addEventListener('click', function () {
@@ -165,7 +234,7 @@ function twoCardsFlipped() {
             for (let index = 0; index < cards.length; index++) {
                 const element = cards[index];
 
-                if (element.classList.contains("revealed")==false) {
+                if (element.classList.contains("revealed") == false) {
                     element.classList.remove("noClick");
                 }
             }
