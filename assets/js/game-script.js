@@ -106,16 +106,27 @@ function twoCardsFlipped (){
     //check bg images
     flippedCards=document.getElementsByClassName("flipCard");
     debugger;
-    flippedCard1=flippedCards[0].lastChild;
-    flippedCard2=flippedCards[1].lastChild;
+    flippedCard1bg=flippedCards[0].lastChild;
+    flippedCard2bg=flippedCards[1].lastChild;
+
+    isMatch=flippedCard1bg.isEqualNode(flippedCard2bg);
+    console.log(isMatch);
     
     // if images match, 
-        //keep them flipped
+    if (!isMatch) {
         //increase score
-        //set click counter back to zero
 
-    //otherwise 
+        //set click counter back to zero
+        clickCounter=0;
+    } else {
+         //otherwise 
         //start counter for 4 sec
+        setTimeout(function() {
+            flippedCards[0].classList.toggle("flipCard");
+            flippedCards[0].classList.toggle("flipCard"); // using index 0 again because HTML collection was updated after 1st line
+            clickCounter=0;
+        },5000);
         //flip them back
         //set click counter back to zero
+    }
 }
