@@ -10,7 +10,7 @@ document.getElementById("game-stats").style.textAlign = "center";
 document.getElementById("title").style.display = "none";
 
 
-// dynamically create the card elements
+// dynamically create card elements and assign a pair of random images to a rendom set of cards
 for (let index = 0; index < 10; index++) {
     addElement();
 }
@@ -29,10 +29,16 @@ function addElement() {
     // add text to child divs
 
     frontText = document.createTextNode("Front side");
-    backText = document.createTextNode("Back side")
+    
+
+    backImg=document.createElement("img");
+    backImg.setAttribute("src","/assets/images/cloud.png");
+    backImg.setAttribute("class", "imgOnCard");
 
     front.appendChild(frontText);
-    back.appendChild(backText);
+    
+
+    back.appendChild(backImg);
 
     // append child divs
     newDiv.appendChild(front);
@@ -53,7 +59,7 @@ cards.forEach(element => {
         console.log(cardsFlipped);
         //flip the card if the card is not already flipped and it is one of the first two cards
         flipCard(element,cardsFlipped);
-        debugger;
+        
         //flow if two cards are flipped
         if (cardsFlipped==2) {
             twoCardsFlipped();
@@ -80,6 +86,7 @@ function flipCard(element, cardsFlipped) {
 
         // flip the card
         element.classList.toggle("flipCard");
+        element.style.
     }
 
 }
@@ -94,5 +101,19 @@ function clickCounter() {
 }
 
 function twoCardsFlipped (){
-    console.log("two cards flipped");
+    //check bg images
+    flippedCards=document.getElementsByClassName("flipCard");
+    debugger;
+    flippedCard1=flippedCards[0].lastChild;
+    flippedCard2=flippedCards[1].lastChild;
+    
+    // if images match, 
+        //keep them flipped
+        //increase score
+        //set click counter back to zero
+
+    //otherwise 
+        //start counter for 4 sec
+        //flip them back
+        //set click counter back to zero
 }

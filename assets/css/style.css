@@ -157,7 +157,9 @@ header h1 {
 }
 
 
-/* == levels.html page STYLES == */
+/* ===================== 
+   levels.html page STYLES 
+   ===================== */
 
 /* level selector wrapper style */
 .level-selector-wrapper {
@@ -257,8 +259,7 @@ header h1 {
     gap: 10px;
 }
 
-/* 
-Inspired from https://jefferson-cuartas.medium.com/
+/* Inspired from https://jefferson-cuartas.medium.com/
 how-to-create-a-flip-card-effect-using-javascript-767dd945210c
 */
 
@@ -297,3 +298,12 @@ how-to-create-a-flip-card-effect-using-javascript-767dd945210c
 .flipCard {
     transform: rotateY(180deg);
 }
+
+.imgOnCard {
+    width: 100%;
+    height: 100%;
+}
+
+.noClick {
+    pointer-events: none;
+ }
