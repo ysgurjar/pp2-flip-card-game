@@ -86,7 +86,9 @@ function flipCard(element, cardsFlipped) {
 
         // flip the card
         element.classList.toggle("flipCard");
-        element.style.
+
+        //disable click on the flipped card
+        element.classList.add("noClick");
     }
 
 }
