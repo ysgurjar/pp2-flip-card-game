@@ -15,6 +15,10 @@ for (let index = 0; index < 10; index++) {
     addElement();
 }
 
+// assign a pair of random images to a random pair of cards
+
+
+
 function addElement() {
     // create a new div element
     const newDiv = document.createElement("div");
@@ -141,11 +145,11 @@ function twoCardsFlipped() {
             flippedCards[0].classList.toggle("flipCard");
             flippedCards[0].classList.toggle("flipCard"); // using index 0 again because HTML collection was updated after 1st line
 
-            // enable click events on unrevealed cards
+            // enable click events only on unrevealed cards
             for (let index = 0; index < cards.length; index++) {
                 const element = cards[index];
 
-                if (!element.classList.contains("revealed")) {
+                if (element.classList.contains("revealed")==false) {
                     element.classList.remove("noClick");
                 }
             }
