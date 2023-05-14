@@ -15,8 +15,24 @@ for (let index = 0; index < 10; index++) {
     addElement();
 }
 
-// assign a pair of random images to a random pair of cards
+// ======assign a pair of random images to a random pair of cards=====
 
+
+// create an array containing images name
+
+// create an array containing cards, create a copy
+
+// select one image from image array
+
+// select two random cards from the cards array
+
+// assign one image to two random cards
+
+// pop the image out of the img array, so that it doesn't get reassigned
+
+// pop two assigned cards from the cards array so that it doesn't get reassigned
+
+// repeat until all cards are assigned.
 
 
 function addElement() {
