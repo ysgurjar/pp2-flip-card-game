@@ -217,10 +217,10 @@ function twoCardsFlipped() {
     // if images match, 
     if (isMatch) {
         //increase score
-        
+        debugger;
         //add a revealed class
-        flippedCards[0].classList.add("revealed");
-        flippedCards[1].classList.add("revealed");
+        checkFlippedCards[0].classList.add("revealed");
+        checkFlippedCards[1].classList.add("revealed");
 
         //set click counter back to zero
         clickOnCards = 0;
@@ -229,7 +229,7 @@ function twoCardsFlipped() {
         for (let index = 0; index < cards.length; index++) {
             const element = cards[index];
 
-            if (element.classList.contains("revealed") == false) {
+            if (element.classList.contains("revealed") === false) {
                 element.classList.remove("noClick");
             }
         }
