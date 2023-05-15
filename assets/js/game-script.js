@@ -203,8 +203,13 @@ function twoCardsFlipped() {
 
     let flippedCards = document.getElementsByClassName("flipCard");
 
-    flippedCard1bg = flippedCards[0].lastChild;
-    flippedCard2bg = flippedCards[1].lastChild;
+    checkFlippedCards = Array.prototype.filter.call( //returns a shallow copy
+                flippedCards,
+                (card) => card.classList.contains("revealed")===false
+            );
+
+    flippedCard1bg = checkFlippedCards[0].lastChild;
+    flippedCard2bg = checkFlippedCards[1].lastChild;
 
     isMatch = flippedCard1bg.isEqualNode(flippedCard2bg);
 
@@ -212,7 +217,7 @@ function twoCardsFlipped() {
     // if images match, 
     if (isMatch) {
         //increase score
-        debugger;
+        
         //add a revealed class
         flippedCards[0].classList.add("revealed");
         flippedCards[1].classList.add("revealed");
