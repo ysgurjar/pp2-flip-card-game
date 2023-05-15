@@ -13,7 +13,7 @@ document.getElementById("title").style.display = "none";
 
 // dynamically create card elements 
 for (let index = 0; index < 10; index++) {
-    
+
     addElement();
 }
 
@@ -26,7 +26,7 @@ let numberOfUnassignedCards = [];
 
 for (let index = 0; index < cards.length; index++) {
     numberOfUnassignedCards[index] = index + 1; //card 0 does not exist
-    console.log(numberOfUnassignedCards[index]);
+
 }
 
 // create an array containing images patch
@@ -62,11 +62,10 @@ function assignCards() {
 
         // --select two random cards from the cards array--
 
-        debugger;
         // select random first card
         let oneOftwo = Math.floor(Math.random() * numberOfUnassignedCards.length); //reading random index
         let cardOnGrid = numberOfUnassignedCards[oneOftwo]; //reading the value against random index i.e. card no on grid.
-        console.log(oneOftwo);
+
 
         // select a random image and create img element
         let backImg = document.createElement("img");
@@ -75,7 +74,7 @@ function assignCards() {
 
         // assigning random image to first card 
         let backSide = cards[cardOnGrid - 1].lastChild;
-        backSide.appendChild(backImg.cloneNode(true));
+        backSide.appendChild(backImg.cloneNode(true)); // send a clone, otherwise node is just moved from previous position.
 
 
         // remove the first selected card from further selection
@@ -84,13 +83,11 @@ function assignCards() {
         // select second card
         let twoOftwo = Math.floor(Math.random() * numberOfUnassignedCards.length); //reading random index
         cardOnGrid = numberOfUnassignedCards[twoOftwo]; //reading the value against random index i.e. card no on grid.
-        console.log(twoOftwo);
 
 
         // assigning random image to second card 
         backSide = cards[cardOnGrid - 1].lastChild;
-        backSide.appendChild(backImg.cloneNode(true));
-
+        backSide.appendChild(backImg.cloneNode(true)); // send a clone otherwise, node is just move from previous position
 
         // remove the second selected card from further selection
         numberOfUnassignedCards.splice(twoOftwo, 1);
@@ -145,7 +142,7 @@ cards.forEach(element => {
 
         //run click counter, returns no of cards flipped
         let cardsFlipped = clickCounter();
-        console.log(cardsFlipped);
+
         //flip the card if the card is not already flipped and it is one of the first two cards
         flipCard(element, cardsFlipped);
 
@@ -204,40 +201,70 @@ function twoCardsFlipped() {
 
     //check bg images
 
-    flippedCards = document.getElementsByClassName("flipCard");
+    let flippedCards = document.getElementsByClassName("flipCard");
 
     flippedCard1bg = flippedCards[0].lastChild;
     flippedCard2bg = flippedCards[1].lastChild;
 
     isMatch = flippedCard1bg.isEqualNode(flippedCard2bg);
-    console.log(isMatch);
+
 
     // if images match, 
-    if (!isMatch) {
+    if (isMatch) {
         //increase score
-
+        debugger;
         //add a revealed class
         flippedCards[0].classList.add("revealed");
-        flippedCards[0].classList.add("revealed");
+        flippedCards[1].classList.add("revealed");
+
         //set click counter back to zero
         clickOnCards = 0;
+
+        // enable click events only on unrevealed cards
+        for (let index = 0; index < cards.length; index++) {
+            const element = cards[index];
+
+            if (element.classList.contains("revealed") == false) {
+                element.classList.remove("noClick");
+            }
+        }
 
     } else {
 
         // after 4 sec, flip cards back and enable click events
         setTimeout(function () {
+            
+            //--flip back only those cards that are not revealed--
 
-            flippedCards[0].classList.toggle("flipCard");
-            flippedCards[0].classList.toggle("flipCard"); // using index 0 again because HTML collection was updated after 1st line
+            // first, select unrevealed cards- two of them are flipped and some are unflipped
+            const flippedCards = Array.prototype.filter.call( //returns a shallow copy
+                cards,
+                (card) => card.classList.contains("revealed")===false
+            );
+
+            flippedCards.forEach(element => {
+                
+                // second, enable clickevents on all unrevealed cards
+                element.classList.remove("noClick");
+
+                // third, if an unrevealed card was flipped, flip it back because it did not match
+                if (element.classList.contains("flipCard")) {
+                    element.classList.toggle("flipCard");
+                }
+                
+            });
+
+            // flippedCards[0].classList.toggle("flipCard");
+            // flippedCards[0].classList.toggle("flipCard"); // using index 0 again because HTML collection was updated after 1st line
 
             // enable click events only on unrevealed cards
-            for (let index = 0; index < cards.length; index++) {
-                const element = cards[index];
+            // for (let index = 0; index < cards.length; index++) {
+            //     const element = cards[index];
 
-                if (element.classList.contains("revealed") == false) {
-                    element.classList.remove("noClick");
-                }
-            }
+            //     if (element.classList.contains("revealed") == false) {
+            //         element.classList.remove("noClick");
+            //     }
+            // }
 
         }, 4000);
 
