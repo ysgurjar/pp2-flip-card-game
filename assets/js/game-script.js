@@ -154,6 +154,8 @@ function flipCard(element, cardsFlipped) {
             flipsRemaining--;
             document.getElementById("flips-remaining").innerText=flipsRemaining;
         } else {
+            // call modal "ran out of flips"
+
             return
         }
 
@@ -199,6 +201,10 @@ function twoCardsFlipped() {
     if (isMatch) {
 
         // first, increase score
+        let scoreElement=document.getElementById("score");
+        let score=parseInt(scoreElement.innerText);
+        score=score+10;
+        scoreElement.innerText=score;
 
         // second, declar cards as reveleaed by addding a revealed class
         checkFlippedCards[0].classList.add("revealed");
