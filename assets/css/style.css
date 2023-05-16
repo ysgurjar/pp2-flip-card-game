@@ -1,12 +1,3 @@
-/* GLOBAL VARIABLES */
-:root {
-    --card-height: 160px;
-    --card-width:100px;
-
-    --grid-no-of-rows:5;
-    --grid-no-of-cols:5;
-}
-
 /* == GLOBAL STYLES == */
 * {
     /*instructing broswer to account for any border and padding in specified element's width */
@@ -254,11 +245,30 @@ header h1 {
 
 #cards-wrapper {
     display: grid;
-    grid-template-columns: repeat(var(--grid-no-of-cols), 1fr);
-    grid-template-rows: repeat(var(--grid-no-of-rows), minmax(160px, 10fr));
-    gap: 10px;
+    
+    grid-template-columns: repeat(auto-fit, minmax(120px, 2fr)); 
+    grid-template-rows: repeat(auto-fit, minmax(120px, 1fr)); 
+    grid-auto-rows: minmax(160px,1fr);
+    gap: 5px;
 }
 
+@media screen and (max-width: 440px) {
+    #cards-wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(50px, 2fr)); 
+        grid-template-rows: repeat(auto-fit, minmax(70px, 1fr)); 
+        grid-auto-rows: minmax(160px,1fr);
+        gap: 5px;
+    }
+  }
+ @media screen and (min-width: 900px) {
+    #cards-wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 2fr)); 
+        grid-template-rows: repeat(auto-fit, minmax(160px, 1fr)); 
+        grid-auto-rows: minmax(160px,1fr);
+        gap: 10px;
+    }
+  }
+  
 /* Inspired from https://jefferson-cuartas.medium.com/
 how-to-create-a-flip-card-effect-using-javascript-767dd945210c
 */
@@ -289,7 +299,7 @@ how-to-create-a-flip-card-effect-using-javascript-767dd945210c
     width: 100%;
     height:100%;
     backface-visibility: hidden;
-    background-color: #2861ff;
+    background-color: #e7e7e7;
     color: #000;
     text-align: center;
     transform: rotateY(180deg);
