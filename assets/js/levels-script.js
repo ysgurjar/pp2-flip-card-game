@@ -7,7 +7,7 @@ levelData={
 
         cards:4,
         flipsMax:6,
-        timeMax:"00:09"
+        timeMax:"00:29"
     },
     2:{
         memory:1,
