@@ -1,8 +1,8 @@
 // get local storage
-level = window.localStorage.getItem("level");
-cards = window.localStorage.getItem("cards");
-flipsMax = window.localStorage.getItem("flipsMax");
-timeMax = window.localStorage.getItem("timeMax");
+const level = window.localStorage.getItem("level");
+const cardsOnGrid = window.localStorage.getItem("cards");
+const flipsMax = window.localStorage.getItem("flipsMax");
+const timeMax = window.localStorage.getItem("timeMax");
 
 document.getElementById("game-stats").style.display = "block";
 document.getElementById("game-stats").style.textAlign = "center";
@@ -15,7 +15,7 @@ for (let index = 0; index < 10; index++) {
 }
 
 // get all the cards
-cards = document.querySelectorAll(".card2");
+let cards = document.querySelectorAll(".card2");
 
 // create an array containing no / index of cards starting with card no 1 
 let numberOfUnassignedCards = [];
@@ -24,7 +24,7 @@ for (let index = 0; index < cards.length; index++) {
 }
 
 // create an array containing images patch
-cardImages = [
+let cardImages = [
     "/assets/images/game-angry-bird.png",
     "/assets/images/game-bee.png",
     "/assets/images/game-bird-blue.png",
@@ -121,7 +121,7 @@ cards.forEach(element => {
         if (cardsFlipped == 2) {
             twoCardsFlipped();
         }
-    })
+    });
 });
 
 /**
@@ -132,10 +132,10 @@ let clickOnCards = 0;
 function flipCard(element, cardsFlipped) {
 
     // check if card already flipped?
-    isFlipped = element.classList.contains("flipcard");
+    const isFlipped = element.classList.contains("flipcard");
 
     // is it first or second card to be flipped?
-    isFirstorSecondCard = (cardsFlipped < 3)
+    const isFirstorSecondCard = (cardsFlipped < 3);
 
     if ((!isFlipped) && (isFirstorSecondCard)) {
 
@@ -147,7 +147,6 @@ function flipCard(element, cardsFlipped) {
     }
 
 }
-
 
 /**
  * counts clicks on card
@@ -179,7 +178,7 @@ function twoCardsFlipped() {
     let flippedCard2bg = checkFlippedCards[1].lastChild;
 
     // fourth, check if the bg match
-    isMatch = flippedCard1bg.isEqualNode(flippedCard2bg);
+    let isMatch = flippedCard1bg.isEqualNode(flippedCard2bg);
 
     // --code if the bg matches--
     if (isMatch) {
