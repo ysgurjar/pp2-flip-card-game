@@ -10,8 +10,11 @@ document.getElementById("game-stats").style.textAlign = "center";
 document.getElementById("title").style.display = "none";
 
 // assign time and flipMax based on level selected
-document.getElementById("time-remaining").innerText=timeMax;
-document.getElementById("flips-remaining").innerText=flipsMax;
+document.getElementById("time-remaining").innerText = timeMax;
+document.getElementById("flips-remaining").innerText = flipsMax;
+
+//create a default gamestatus
+let gamestatus = "running";
 
 
 // dynamically create card elements 
@@ -118,9 +121,22 @@ cards.forEach(element => {
     element.addEventListener('click', function () {
         // run click counter, returns no of cards flipped
         let cardsFlipped = clickCounter();
+        
+        // run time remaining, returns true if time is remaining
+        let isTimeRemaining = checkRemainingTime()
+        // run flip remaining, returns true is flips are remaining
+        let  isFlipsRemaining= checkRemainingFlips()
+        // check if all cards are revealed or not
+        let isAllCardsRevealed= checkAllCardsRevealed()
 
         // flip the card if the card is not already flipped and it is one of the first two cards
-        flipCard(element, cardsFlipped);
+        if (isTimeRemaining && isFlipsRemaining && isAllCardsRevealed==false){
+            flipCard(element,cardsFlipped)
+        }
+
+
+        // if ((cardsFlipped > 0))
+        //     flipCard(element, cardsFlipped);
 
         // low if two cards are flipped
         if (cardsFlipped == 2) {
@@ -142,21 +158,25 @@ function flipCard(element, cardsFlipped) {
     // is it first or second card to be flipped?
     const isFirstorSecondCard = (cardsFlipped < 3);
 
-    if ((!isFlipped) && (isFirstorSecondCard)) {
+    // do you have any flips remaining?
+    let flipsRemaining = document.getElementById("flips-remaining").innerText;
+    let isFlipsRemaining = (flipsRemaining > 0);
+
+    if ((!isFlipped) && (isFirstorSecondCard) && (isFlipsRemaining)) {
 
         // flip the card
         element.classList.toggle("flipCard");
 
-        // deduct 1 from flipsremaining
-        let flipsRemaining=document.getElementById("flips-remaining").innerText;
-        
-        if (flipsRemaining>0) {
-            flipsRemaining--;
-            document.getElementById("flips-remaining").innerText=flipsRemaining;
-        } else {
-            // call modal "ran out of flips"
+        // deduct 1 from flipsremaining and update html
+        flipsRemaining--;
+        document.getElementById("flips-remaining").innerText = flipsRemaining;
 
-            return
+        if (flipsRemaining == 0) {
+            // change game status
+            gamestatus = "zeroFlipsLeft"
+
+            // call modal "ran out of flips"
+            gameOver(gamestatus, level, level);
         }
 
         //disable click on the flipped card
@@ -201,10 +221,10 @@ function twoCardsFlipped() {
     if (isMatch) {
 
         // first, increase score
-        let scoreElement=document.getElementById("score");
-        let score=parseInt(scoreElement.innerText);
-        score=score+10;
-        scoreElement.innerText=score;
+        let scoreElement = document.getElementById("score");
+        let score = parseInt(scoreElement.innerText);
+        score = score + 10;
+        scoreElement.innerText = score;
 
         // second, declar cards as reveleaed by addding a revealed class
         checkFlippedCards[0].classList.add("revealed");
@@ -262,37 +282,80 @@ function startTimer() {
 
     //get the current time
     let presentTime = document.getElementById('time-remaining').innerHTML;
-    
+
     // split to get minute and hour
     let timeArray = presentTime.split(/[:]+/);
     let m = timeArray[0];
     let s = checkSecond((timeArray[1] - 1));
-    
+
     // second countdown timer, which is executed every 1000 ms
-    if(s==59){m=m-1}
+    if (s == 59) { m = m - 1 }
 
     // update minutes
-    if(m<0){
-      // call runOutofTime   
-      return
+    if (m < 0) {
+        // call runOutofTime   
+        return
     }
     // update time on html element
     document.getElementById('time-remaining').innerHTML =
-    m + ":" + s;
+        m + ":" + s;
 
     // function calls itself every 1000 ms ie every second
     setTimeout(startTimer, 1000);
 }
 
 function checkSecond(sec) {
-    if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
-    if (sec < 0) {sec = "59"};
+    if (sec < 10 && sec >= 0) { sec = "0" + sec }; // add zero in front of numbers < 10
+    if (sec < 0) { sec = "59" };
     return sec;
-  }
+}
 
-/**
- * stop timer
- */
-function stopTimer(params) {
+function gameOver(gameStatus, currentLevel, NextLevel) {
+    alert("hey");
+    //disable clickevents on all cards
+    for (let index = 0; index < cards.length; index++) {
+        const element = cards[index];
+        element.classList.add("noClick");
+    }
+}
 
+function checkRemainingTime() {
+    //get the current time
+    let presentTime = document.getElementById('time-remaining').innerHTML;
+
+    // split to get minute and hour
+    let timeArray = presentTime.split(/[:]+/);
+    let m = timeArray[0];
+    let s = checkSecond((timeArray[1] - 1));
+
+    if (m < 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function checkAllCardsRevealed() {
+    let NoOfRevealedCards = Array.prototype.filter.call( //returns a shallow copy
+        cards,
+        (card) => card.classList.contains("card2 flipCard noClick revealed") === false
+    );
+
+    if (cards.length=NoOfRevealedCards) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function checkRemainingFlips() {
+    let flipsRemaining = document.getElementById("flips-remaining").innerText;
+    let isFlipsRemaining = (flipsRemaining > 0);
+
+    if (isFlipsRemaining) {
+        return true;
+    } else {
+        return false;
+    }
+    
 }
