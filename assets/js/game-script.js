@@ -9,6 +9,10 @@ document.getElementById("game-stats").style.textAlign = "center";
 
 document.getElementById("title").style.display = "none";
 
+// assign time and flipMax based on level selected
+document.getElementById("time-remaining").innerText=timeMax;
+document.getElementById("flips-remaining").innerText=flipsMax;
+
 // dynamically create card elements 
 for (let index = 0; index < 10; index++) {
     addElement();
@@ -228,4 +232,70 @@ function twoCardsFlipped() {
         // set click counter back to zero
         clickOnCards = 0;
     }
+}
+
+// The timer is taken from https://codepen.io/ishanbakshi/pen/pgzNMv and modified
+
+startTimer()
+
+/**
+ * timer function
+ */
+function startTimer() {
+
+    //get the current time
+    let presentTime = document.getElementById('time-remaining').innerHTML;
+    
+    // split to get minute and hour
+    let timeArray = presentTime.split(/[:]+/);
+    let m = timeArray[0];
+    let s = checkSecond((timeArray[1] - 1));
+    
+    // second countdown timer, which is executed every 1000 ms
+    if(s==59){m=m-1}
+
+    // update minutes
+    if(m<0){
+      return
+    }
+    // update time on html element
+    document.getElementById('time-remaining').innerHTML =
+    m + ":" + s;
+
+    // function calls itself every 1000 ms ie every second
+    setTimeout(startTimer, 1000);
+}
+
+function checkSecond(sec) {
+    if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+    if (sec < 0) {sec = "59"};
+    return sec;
+  }
+
+/**
+ * stop timer
+ */
+function stopTimer(params) {
+
+}
+
+
+/**
+ * Counts the no of times cards have been flipped
+ */
+function flipCounter(params) {
+    
+}
+/**
+ *  Stops the game and presents modal
+*/
+function stopGame(params) {
+    
+}
+
+/**
+ *  Increases the score
+ */
+function scoreIncrease(params) {
+    
 }
