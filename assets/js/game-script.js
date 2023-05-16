@@ -15,7 +15,7 @@ document.getElementById("flips-remaining").innerText=flipsMax;
 
 
 // dynamically create card elements 
-for (let index = 0; index < 10; index++) {
+for (let index = 0; index < cardsOnGrid; index++) {
     addElement();
 }
 
@@ -295,25 +295,4 @@ function checkSecond(sec) {
  */
 function stopTimer(params) {
 
-}
-
-
-/**
- * Counts the no of times cards have been flipped
- */
-function flipCounter(params) {
-    
-}
-/**
- *  Stops the game and presents modal
-*/
-function stopGame(params) {
-    
-}
-
-/**
- *  Increases the score
- */
-function scoreIncrease(params) {
-    
 }

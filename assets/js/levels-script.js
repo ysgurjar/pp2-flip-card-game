@@ -5,7 +5,7 @@ levelData={
         accuracy:1,
         speed:1,
 
-        cards:16,
+        cards:4,
         flipsMax:999,
         timeMax:"59:59"
     },
@@ -21,6 +21,13 @@ levelData={
     3:{
         memory:2
     }
+}
+let predefinedLevel=window.localStorage.getItem("level");
+// if user is redirected from the game page then a certain level needs to be selected
+if (predefinedLevel=== null) {
+    window.localStorage.setItem("level",1);
+} else {
+    window.localStorage.setItem("level",predefinedLevel);
 }
 
 /**
