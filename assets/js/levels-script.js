@@ -5,9 +5,9 @@ levelData={
         accuracy:1,
         speed:1,
 
-        cards:4,
-        flipsMax:6,
-        timeMax:"00:29"
+        cards:16,
+        flipsMax:99,
+        timeMax:"30:00"
     },
     2:{
         memory:1,
@@ -15,12 +15,37 @@ levelData={
         speed:3,
 
         cards:16,
-        flipsMax:999,
-        timeMax:"30:00"
+        flipsMax:50,
+        timeMax:"15:00"
     },
     3:{
-        memory:2
+        memory:3,
+        accuracy:3,
+        speed:3,
+
+        cards:16,
+        flipsMax:25,
+        timeMax:"07:00"
+    },
+    4:{
+        memory:5,
+        accuracy:4,
+        speed:3,
+
+        cards:36,
+        flipsMax:72,
+        timeMax:"15:00"
+    },
+    5:{
+        memory:5,
+        accuracy:5,
+        speed:5,
+
+        cards:36,
+        flipsMax:50,
+        timeMax:"03:00"
     }
+
 }
 let predefinedLevel=window.localStorage.getItem("level");
 // if user is redirected from the game page then a certain level needs to be selected

@@ -49,7 +49,12 @@ let cardImages = [
     "/assets/images/game-mountain.png",
     "/assets/images/game-pokemon.png",
     "/assets/images/game-star-yellow.png",
-    "/assets/images/game-star.png"
+    "/assets/images/game-star.png",
+    "/assets/images/game-sun.png",
+    "/assets/images/game-tiger.png",
+    "/assets/images/game-tree-2.png",
+    "/assets/images/game-tree.png",
+    "/assets/images/whale.png",
 ];
 
 // assign a pair of random images to a random pair of cards
