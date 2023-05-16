@@ -13,6 +13,7 @@ document.getElementById("title").style.display = "none";
 document.getElementById("time-remaining").innerText=timeMax;
 document.getElementById("flips-remaining").innerText=flipsMax;
 
+
 // dynamically create card elements 
 for (let index = 0; index < 10; index++) {
     addElement();
@@ -146,6 +147,16 @@ function flipCard(element, cardsFlipped) {
         // flip the card
         element.classList.toggle("flipCard");
 
+        // deduct 1 from flipsremaining
+        let flipsRemaining=document.getElementById("flips-remaining").innerText;
+        
+        if (flipsRemaining>0) {
+            flipsRemaining--;
+            document.getElementById("flips-remaining").innerText=flipsRemaining;
+        } else {
+            return
+        }
+
         //disable click on the flipped card
         element.classList.add("noClick");
     }
@@ -256,6 +267,7 @@ function startTimer() {
 
     // update minutes
     if(m<0){
+      // call runOutofTime   
       return
     }
     // update time on html element
