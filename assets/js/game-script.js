@@ -119,15 +119,24 @@ function addElement() {
 
 cards.forEach(element => {
     element.addEventListener('click', function () {
-        // run click counter, returns no of cards flipped
+        // run click counter, returns no of cards flipped after reset after counter reset(i.e.1 or 2)
         let cardsFlipped = clickCounter();
         
         // run time remaining, returns true if time is remaining
         let isTimeRemaining = checkRemainingTime()
+        
+        // game over if there is no time left
+        if (!isTimeRemaining) {gameOver("outOfTime",2,2)}
+
         // run flip remaining, returns true is flips are remaining
         let  isFlipsRemaining= checkRemainingFlips()
-        // check if all cards are revealed or not
+
+        // game over if there are no flips left
+        if (!isFlipsRemaining) {gameOver("outOfFlips",2,2)}
+
+        // game over if all cards are revealed
         let isAllCardsRevealed= checkAllCardsRevealed()
+        if (isAllCardsRevealed) {gameOver("success",2,2)}
 
         // flip the card if the card is not already flipped and it is one of the first two cards
         if (isTimeRemaining && isFlipsRemaining && isAllCardsRevealed==false){
@@ -171,13 +180,13 @@ function flipCard(element, cardsFlipped) {
         flipsRemaining--;
         document.getElementById("flips-remaining").innerText = flipsRemaining;
 
-        if (flipsRemaining == 0) {
-            // change game status
-            gamestatus = "zeroFlipsLeft"
+        // if (flipsRemaining == 0) {
+        //     // change game status
+        //     gamestatus = "zeroFlipsLeft"
 
-            // call modal "ran out of flips"
-            gameOver(gamestatus, level, level);
-        }
+        //     // call modal "ran out of flips"
+        //     gameOver(gamestatus, level, level);
+        // }
 
         //disable click on the flipped card
         element.classList.add("noClick");
@@ -241,6 +250,9 @@ function twoCardsFlipped() {
                 element.classList.remove("noClick");
             }
         }
+
+        // fifth, check if all cards are flipped        
+        if(flippedCards.length===cards.length) {gameOver("success",2,2)}
     } else {
         // after 4 sec, flip cards back and enable click events
         setTimeout(function () {
@@ -311,7 +323,7 @@ function checkSecond(sec) {
 }
 
 function gameOver(gameStatus, currentLevel, NextLevel) {
-    alert("hey");
+    alert(gameStatus);
     //disable clickevents on all cards
     for (let index = 0; index < cards.length; index++) {
         const element = cards[index];
@@ -345,7 +357,10 @@ function checkAllCardsRevealed() {
         return false;
     } else {
         return true;
+        
     }
+
+    
 }
 
 function checkRemainingFlips() {
@@ -355,6 +370,7 @@ function checkRemainingFlips() {
     if (isFlipsRemaining) {
         return true;
     } else {
+        alert("ran out of flips")
         return false;
     }
     
