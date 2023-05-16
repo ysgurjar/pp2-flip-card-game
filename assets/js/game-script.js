@@ -9,24 +9,18 @@ document.getElementById("game-stats").style.textAlign = "center";
 
 document.getElementById("title").style.display = "none";
 
-
-
 // dynamically create card elements 
 for (let index = 0; index < 10; index++) {
-
     addElement();
 }
 
 // get all the cards
 cards = document.querySelectorAll(".card2");
 
-
 // create an array containing no / index of cards starting with card no 1 
 let numberOfUnassignedCards = [];
-
 for (let index = 0; index < cards.length; index++) {
     numberOfUnassignedCards[index] = index + 1; //card 0 does not exist
-
 }
 
 // create an array containing images patch
@@ -50,16 +44,12 @@ cardImages = [
     "/assets/images/game-star.png"
 ];
 
-// ======assign a pair of random images to a random pair of cards=====
+// assign a pair of random images to a random pair of cards
 assignCards();
 
 function assignCards() {
-
     let index = 0;
-
     while (numberOfUnassignedCards.length > 0) {
-
-
         // --select two random cards from the cards array--
 
         // select random first card
@@ -112,21 +102,6 @@ function addElement() {
     const back = document.createElement("div");
     back.setAttribute("class", "back");
 
-    // // add text to child divs
-
-    // frontText = document.createTextNode("Front side");
-
-
-    // backImg = document.createElement("img");
-    // backImg.setAttribute("src", "/assets/images/game-cloud.png");
-    // backImg.setAttribute("class", "imgOnCard");
-
-    // front.appendChild(frontText);
-
-
-    // back.appendChild(backImg);
-
-    // // append child divs
     newDiv.appendChild(front);
     newDiv.appendChild(back);
 
@@ -156,8 +131,7 @@ cards.forEach(element => {
 /**
  * flips card after checking necessary conditions
  */
-
-clickOnCards = 0;
+let clickOnCards = 0;
 
 function flipCard(element, cardsFlipped) {
 
@@ -191,41 +165,42 @@ function clickCounter() {
 function twoCardsFlipped() {
 
     //disable clickevents on all cards
-
     for (let index = 0; index < cards.length; index++) {
-
         const element = cards[index];
         element.classList.add("noClick");
-
     }
 
-    //check bg images
+    //--check bg images--
 
+    // first, get all cards that are flipped
     let flippedCards = document.getElementsByClassName("flipCard");
 
-    checkFlippedCards = Array.prototype.filter.call( //returns a shallow copy
-                flippedCards,
-                (card) => card.classList.contains("revealed")===false
-            );
-
+    // second, filter the selection to get only last two cards that are flipped 
+    let checkFlippedCards = Array.prototype.filter.call( //returns a shallow copy
+        flippedCards,
+        (card) => card.classList.contains("revealed") === false
+    );
+    // third, get their backgrounds
     flippedCard1bg = checkFlippedCards[0].lastChild;
     flippedCard2bg = checkFlippedCards[1].lastChild;
 
+    // fourth, check if the bg match
     isMatch = flippedCard1bg.isEqualNode(flippedCard2bg);
 
 
-    // if images match, 
+    // --code if the bg matches--
     if (isMatch) {
-        //increase score
-        debugger;
-        //add a revealed class
+
+        // first, increase score
+
+        // second, declar cards as reveleaed by addding a revealed class
         checkFlippedCards[0].classList.add("revealed");
         checkFlippedCards[1].classList.add("revealed");
 
-        //set click counter back to zero
+        // third, set click counter back to zero
         clickOnCards = 0;
 
-        // enable click events only on unrevealed cards
+        // fourth, enable click events only on unrevealed cards
         for (let index = 0; index < cards.length; index++) {
             const element = cards[index];
 
@@ -238,17 +213,17 @@ function twoCardsFlipped() {
 
         // after 4 sec, flip cards back and enable click events
         setTimeout(function () {
-            
+
             //--flip back only those cards that are not revealed--
 
             // first, select unrevealed cards- two of them are flipped and some are unflipped
             const flippedCards = Array.prototype.filter.call( //returns a shallow copy
                 cards,
-                (card) => card.classList.contains("revealed")===false
+                (card) => card.classList.contains("revealed") === false
             );
 
             flippedCards.forEach(element => {
-                
+
                 // second, enable clickevents on all unrevealed cards
                 element.classList.remove("noClick");
 
@@ -256,7 +231,7 @@ function twoCardsFlipped() {
                 if (element.classList.contains("flipCard")) {
                     element.classList.toggle("flipCard");
                 }
-                
+
             });
 
             // flippedCards[0].classList.toggle("flipCard");
