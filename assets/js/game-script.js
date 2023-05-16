@@ -1,4 +1,4 @@
-//Get local storage
+// get local storage
 level = window.localStorage.getItem("level");
 cards = window.localStorage.getItem("cards");
 flipsMax = window.localStorage.getItem("flipsMax");
@@ -56,7 +56,6 @@ function assignCards() {
         let oneOftwo = Math.floor(Math.random() * numberOfUnassignedCards.length); //reading random index
         let cardOnGrid = numberOfUnassignedCards[oneOftwo]; //reading the value against random index i.e. card no on grid.
 
-
         // select a random image and create img element
         let backImg = document.createElement("img");
         backImg.setAttribute("src", cardImages[index]);
@@ -66,14 +65,12 @@ function assignCards() {
         let backSide = cards[cardOnGrid - 1].lastChild;
         backSide.appendChild(backImg.cloneNode(true)); // send a clone, otherwise node is just moved from previous position.
 
-
         // remove the first selected card from further selection
         numberOfUnassignedCards.splice(oneOftwo, 1);
 
         // select second card
         let twoOftwo = Math.floor(Math.random() * numberOfUnassignedCards.length); //reading random index
         cardOnGrid = numberOfUnassignedCards[twoOftwo]; //reading the value against random index i.e. card no on grid.
-
 
         // assigning random image to second card 
         backSide = cards[cardOnGrid - 1].lastChild;
@@ -114,14 +111,13 @@ function addElement() {
 
 cards.forEach(element => {
     element.addEventListener('click', function () {
-
-        //run click counter, returns no of cards flipped
+        // run click counter, returns no of cards flipped
         let cardsFlipped = clickCounter();
 
-        //flip the card if the card is not already flipped and it is one of the first two cards
+        // flip the card if the card is not already flipped and it is one of the first two cards
         flipCard(element, cardsFlipped);
 
-        //flow if two cards are flipped
+        // low if two cards are flipped
         if (cardsFlipped == 2) {
             twoCardsFlipped();
         }
@@ -135,11 +131,10 @@ let clickOnCards = 0;
 
 function flipCard(element, cardsFlipped) {
 
-
-    //check if card already flipped?
+    // check if card already flipped?
     isFlipped = element.classList.contains("flipcard");
 
-    //is it first or second card to be flipped?
+    // is it first or second card to be flipped?
     isFirstorSecondCard = (cardsFlipped < 3)
 
     if ((!isFlipped) && (isFirstorSecondCard)) {
@@ -158,7 +153,6 @@ function flipCard(element, cardsFlipped) {
  * counts clicks on card
  */
 function clickCounter() {
-
     return ++clickOnCards;
 }
 
@@ -181,12 +175,11 @@ function twoCardsFlipped() {
         (card) => card.classList.contains("revealed") === false
     );
     // third, get their backgrounds
-    flippedCard1bg = checkFlippedCards[0].lastChild;
-    flippedCard2bg = checkFlippedCards[1].lastChild;
+    let flippedCard1bg = checkFlippedCards[0].lastChild;
+    let flippedCard2bg = checkFlippedCards[1].lastChild;
 
     // fourth, check if the bg match
     isMatch = flippedCard1bg.isEqualNode(flippedCard2bg);
-
 
     // --code if the bg matches--
     if (isMatch) {
@@ -208,9 +201,7 @@ function twoCardsFlipped() {
                 element.classList.remove("noClick");
             }
         }
-
     } else {
-
         // after 4 sec, flip cards back and enable click events
         setTimeout(function () {
 
@@ -233,22 +224,9 @@ function twoCardsFlipped() {
                 }
 
             });
-
-            // flippedCards[0].classList.toggle("flipCard");
-            // flippedCards[0].classList.toggle("flipCard"); // using index 0 again because HTML collection was updated after 1st line
-
-            // enable click events only on unrevealed cards
-            // for (let index = 0; index < cards.length; index++) {
-            //     const element = cards[index];
-
-            //     if (element.classList.contains("revealed") == false) {
-            //         element.classList.remove("noClick");
-            //     }
-            // }
-
         }, 4000);
 
-        //set click counter back to zero
+        // set click counter back to zero
         clickOnCards = 0;
     }
 }
