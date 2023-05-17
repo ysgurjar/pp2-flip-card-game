@@ -15,7 +15,7 @@ levelData={
         speed:3,
 
         cards:16,
-        flipsMax:50,
+        flipsMax:70,
         timeMax:"15:00"
     },
     3:{
@@ -24,7 +24,7 @@ levelData={
         speed:3,
 
         cards:16,
-        flipsMax:25,
+        flipsMax:40,
         timeMax:"07:00"
     },
     4:{
@@ -33,7 +33,7 @@ levelData={
         speed:3,
 
         cards:36,
-        flipsMax:72,
+        flipsMax:99,
         timeMax:"15:00"
     },
     5:{
@@ -42,8 +42,8 @@ levelData={
         speed:5,
 
         cards:36,
-        flipsMax:50,
-        timeMax:"03:00"
+        flipsMax:99,
+        timeMax:"07:00"
     }
 
 }
@@ -155,7 +155,7 @@ playBtn.addEventListener('click', () => {
     let levelIdTextOnCTA=document.getElementById("level-id-text-on-CTA").innerText;
     if (levelIdTextOnCTA=="?") {
         alert("select level");
-        debugger;
+        
     } else {
         window.location.href="game.html";
     }
