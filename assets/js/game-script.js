@@ -386,5 +386,18 @@ function checkRemainingFlips() {
         
         return false;
     }
-
 }
+
+// setting game abort function
+
+homeBtn=document.getElementById("home");
+
+homeBtn.addEventListener('click', () => {
+    
+       let a=confirm("would you like to abort?");
+       
+       if (a==true) {
+        window.location.href="levels.html";
+       }
+       
+    } )
