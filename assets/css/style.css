@@ -81,10 +81,8 @@ header h1 {
 /* setting layout of demo area */
 
 .demo-card-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin: 24px;
+    margin:auto;
+    max-width: 600px;
 }
 
 .card {
@@ -141,12 +139,6 @@ header h1 {
         transform: rotateY(180deg);
     }
 }
-
-
-#demo-area {
-    background-color: aqua;
-}
-
 
 /* ===================== 
    levels.html page STYLES 
