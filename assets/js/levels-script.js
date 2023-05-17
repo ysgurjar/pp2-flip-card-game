@@ -145,3 +145,19 @@ sliders = document.getElementsByClassName("slider");
 for (let index = 0; index < sliders.length; index++) {
     sliders[index].disabled = true;
 }
+
+//add event listener to cta btn
+
+
+playBtn=document.getElementById("play-btn");
+
+playBtn.addEventListener('click', () => {
+    let levelIdTextOnCTA=document.getElementById("level-id-text-on-CTA").innerText;
+    if (levelIdTextOnCTA=="?") {
+        alert("select level");
+        debugger;
+    } else {
+        window.location.href="game.html";
+    }
+    
+})
