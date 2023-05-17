@@ -1,37 +1,37 @@
-// get local storage
+// Retrieve locally stored variables
 const level = window.localStorage.getItem("level");
 const cardsOnGrid = window.localStorage.getItem("cards");
 const flipsMax = window.localStorage.getItem("flipsMax");
 const timeMax = window.localStorage.getItem("timeMax");
 
+// Show elements that were hidden
 document.getElementById("game-stats").style.display = "block";
 document.getElementById("game-stats").style.textAlign = "center";
-
 document.getElementById("title").style.display = "none";
 
-// assign time and flipMax based on level selected
+// Assign time and flipMax based on level selected
 document.getElementById("time-remaining").innerText = timeMax;
 document.getElementById("flips-remaining").innerText = flipsMax;
 
-//create a default gamestatus
+// Create a default gamestatus and clickOnCards global counter
 let gamestatus = "running";
+let clickOnCards = 0;
 
-
-// dynamically create card elements 
+// Dynamically create card elements 
 for (let index = 0; index < cardsOnGrid; index++) {
     addElement();
 }
 
-// get all the cards
+// Get an array of all the cards
 let cards = document.querySelectorAll(".card2");
 
-// create an array containing no / index of cards starting with card no 1 
+// Create an array containing no / index of cards starting with card no 1 
 let numberOfUnassignedCards = [];
 for (let index = 0; index < cards.length; index++) {
     numberOfUnassignedCards[index] = index + 1; //card 0 does not exist
 }
 
-// create an array containing images patch
+// Create an array containing images path
 let cardImages = [
     "/assets/images/game-angry-bird.png",
     "/assets/images/game-bee.png",
@@ -57,56 +57,55 @@ let cardImages = [
     "/assets/images/whale.png",
 ];
 
-// assign a pair of random images to a random pair of cards
+// Assign a pair of random images to a random pair of cards
 assignCards();
 
 function assignCards() {
     let index = 0;
     while (numberOfUnassignedCards.length > 0) {
-        // --select two random cards from the cards array--
+        // --Select two random cards from the cards array--
 
-        // select random first card
+        // 1. Select random first card
         let oneOftwo = Math.floor(Math.random() * numberOfUnassignedCards.length); //reading random index
         let cardOnGrid = numberOfUnassignedCards[oneOftwo]; //reading the value against random index i.e. card no on grid.
 
-        // select a random image and create img element
+        // 2. Select a random image and create img element
         let backImg = document.createElement("img");
         backImg.setAttribute("src", cardImages[index]);
         backImg.setAttribute("class", "imgOnCard");
 
-        // assigning random image to first card 
+        // 3. Assign random image to first card 
         let backSide = cards[cardOnGrid - 1].lastChild;
         backSide.appendChild(backImg.cloneNode(true)); // send a clone, otherwise node is just moved from previous position.
 
-        // remove the first selected card from further selection
+        // 4. Remove the first selected card from further selection
         numberOfUnassignedCards.splice(oneOftwo, 1);
 
-        // select second card
+        // 5. Select second card
         let twoOftwo = Math.floor(Math.random() * numberOfUnassignedCards.length); //reading random index
         cardOnGrid = numberOfUnassignedCards[twoOftwo]; //reading the value against random index i.e. card no on grid.
 
-        // assigning random image to second card 
+        // 6. Assign random image to second card 
         backSide = cards[cardOnGrid - 1].lastChild;
         backSide.appendChild(backImg.cloneNode(true)); // send a clone otherwise, node is just move from previous position
 
-        // remove the second selected card from further selection
+        // 7. Remove the second selected card from further selection
         numberOfUnassignedCards.splice(twoOftwo, 1);
 
-        // pop the image out of the img array, so that it doesn't get reassigned
+        // 8. Pop the image out of the img array, so that it doesn't get reassigned
         delete cardImages[index];
 
-        // repeat until all cards are assigned.
+        // 9. Repeat until all cards are assigned.
         index++;
     }
-
 }
 
 function addElement() {
-    // create a new div element
+    // Create a new div element
     const newDiv = document.createElement("div");
     newDiv.setAttribute("class", "card2");
 
-    // create two child divs for front and back of card
+    // Create two child divs for front and back of card
     const front = document.createElement("div");
     front.setAttribute("class", "front");
     const back = document.createElement("div");
@@ -115,44 +114,37 @@ function addElement() {
     newDiv.appendChild(front);
     newDiv.appendChild(back);
 
-    // add the newly created element and its content into the DOM
+    // Add the newly created element and its content into the DOM
     const currentDiv = document.getElementById("cards-wrapper");
     currentDiv.appendChild(newDiv);
 }
 
-
-
 cards.forEach(element => {
     element.addEventListener('click', function () {
-        // run click counter, returns no of cards flipped after reset after counter reset(i.e.1 or 2)
+        // Run click counter, returns no of cards flipped after reset after counter reset(i.e.1 or 2)
         let cardsFlipped = clickCounter();
 
-        // run time remaining, returns true if time is remaining
+        // Check time remaining, returns true if time is remaining
         let isTimeRemaining = checkRemainingTime()
 
-        // game over if there is no time left
+        // Call to game over function if there is no time left
         if (!isTimeRemaining) { gameOver("outOfTime", 2, 2) }
 
-        // run flip remaining, returns true is flips are remaining
+        // Check flip remaining, returns true is flips are remaining
         let isFlipsRemaining = checkRemainingFlips()
 
-        // game over if there are no flips left
+        // Call game over if there are no flips left
         if (!isFlipsRemaining) { gameOver("outOfFlips", 2, 2) }
 
-        // game over if all cards are revealed
+        // Call game over if all cards are revealed
         let isAllCardsRevealed = checkAllCardsRevealed()
         if (isAllCardsRevealed) { gameOver("success", 2, 2) }
 
-        // flip the card if the card is not already flipped and it is one of the first two cards
+        // Flip the card if the card is not already flipped and it is one of the first two cards
         if (isTimeRemaining && isFlipsRemaining && isAllCardsRevealed == false) {
             flipCard(element, cardsFlipped)
         }
-
-
-        // if ((cardsFlipped > 0))
-        //     flipCard(element, cardsFlipped);
-
-        // low if two cards are flipped
+        // Call twoCardsFlipped to check conditions when two cards are flipped
         if (cardsFlipped == 2) {
             twoCardsFlipped();
         }
@@ -160,94 +152,87 @@ cards.forEach(element => {
 });
 
 /**
- * flips card after checking necessary conditions
+ * Flip card after checking necessary conditions
+ * @param {Element} element         Individual card container
+ * @param {Number}  cardsFlipped    No. of cards flipped to match pairs
  */
-let clickOnCards = 0;
-
 function flipCard(element, cardsFlipped) {
-
-    // check if card already flipped?
+    // Check if card is already flipped or not
     const isFlipped = element.classList.contains("flipcard");
 
-    // is it first or second card to be flipped?
+    // Check if it is first or second card to be flipped
     const isFirstorSecondCard = (cardsFlipped < 3);
 
-    // do you have any flips remaining?
+    // Check if user has any flips remaining
     let flipsRemaining = document.getElementById("flips-remaining").innerText;
     let isFlipsRemaining = (flipsRemaining > 0);
 
     if ((!isFlipped) && (isFirstorSecondCard) && (isFlipsRemaining)) {
 
-        // flip the card
+        // Flip the card
         element.classList.toggle("flipCard");
 
-        // deduct 1 from flipsremaining and update html
+        // Deduct 1 from flipsremaining and update on screen
         flipsRemaining--;
         document.getElementById("flips-remaining").innerText = flipsRemaining;
 
-        // if (flipsRemaining == 0) {
-        //     // change game status
-        //     gamestatus = "zeroFlipsLeft"
-
-        //     // call modal "ran out of flips"
-        //     gameOver(gamestatus, level, level);
-        // }
-
-        //disable click on the flipped card
+        // Disable click on the flipped card
         element.classList.add("noClick");
     }
-
 }
 
 /**
- * counts clicks on card
+ * Count clicks on card
  */
 function clickCounter() {
     return ++clickOnCards;
 }
 
+/**
+ * Checks for next action after user flips two cards
+ */
 function twoCardsFlipped() {
 
-    //disable clickevents on all cards
+    // Disable clickevents on all cards
     for (let index = 0; index < cards.length; index++) {
         const element = cards[index];
         element.classList.add("noClick");
     }
 
-    //--check bg images--
+    //--Check bg images--
 
-    // first, get all cards that are flipped
+    // First, get all cards that are flipped
     let flippedCards = document.getElementsByClassName("flipCard");
 
-    // second, filter the selection to get only last two cards that are flipped 
+    // Second, filter the selection to get only last two cards that are flipped 
     let checkFlippedCards = Array.prototype.filter.call( //returns a shallow copy
         flippedCards,
         (card) => card.classList.contains("revealed") === false
     );
-    // third, get their backgrounds
+    // Third, get their backgrounds
     let flippedCard1bg = checkFlippedCards[0].lastChild;
     let flippedCard2bg = checkFlippedCards[1].lastChild;
 
-    // fourth, check if the bg match
+    // Fourth, check if the bg match
     let isMatch = flippedCard1bg.isEqualNode(flippedCard2bg);
 
-    // --code if the bg matches--
+    // --Code if the bg matches--
     if (isMatch) {
 
-        // first, increase score
+        // First, increase score
         let scoreElement = document.getElementById("score");
         let score = parseInt(scoreElement.innerText);
         score = score + 10;
         scoreElement.innerText = score;
 
-        // second, declar cards as reveleaed by addding a revealed class
+        // Second, declare cards as reveleaed by addding a revealed class
         checkFlippedCards[0].classList.add("revealed");
         checkFlippedCards[1].classList.add("revealed");
 
-        // third, set click counter back to zero
+        // Third, set click counter back to zero
         clickOnCards = 0;
 
-        // fourth, enable click events only on unrevealed cards
+        // Fourth, enable click events only on unrevealed cards
         for (let index = 0; index < cards.length; index++) {
             const element = cards[index];
 
@@ -256,18 +241,18 @@ function twoCardsFlipped() {
             }
         }
 
-        // fifth, check if all cards are flipped , add delay to allow the flipcard animation  
+        // Fifth, check if all cards are flipped , add delay to allow the flipcard animation  
         setTimeout(() => {
             if (flippedCards.length === cards.length) { gameOver("success", 2, 2) }
         }, 1000)
 
     } else {
-        // after 4 sec, flip cards back and enable click events
+        // After 4 sec, flip cards back and enable click events
         setTimeout(function () {
 
-            //--flip back only those cards that are not revealed--
+            // --Flip back only those cards that are not revealed--
 
-            // first, select unrevealed cards- two of them are flipped and some are unflipped
+            // First, select unrevealed cards- two of them are flipped and some are unflipped
             const flippedCards = Array.prototype.filter.call( //returns a shallow copy
                 cards,
                 (card) => card.classList.contains("revealed") === false
@@ -275,71 +260,74 @@ function twoCardsFlipped() {
 
             flippedCards.forEach(element => {
 
-                // second, enable clickevents on all unrevealed cards
+                // Second, enable clickevents on all unrevealed cards
                 element.classList.remove("noClick");
 
-                // third, if an unrevealed card was flipped, flip it back because it did not match
+                // Third, if an unrevealed card was flipped, flip it back because it did not match
                 if (element.classList.contains("flipCard")) {
                     element.classList.toggle("flipCard");
                 }
-
             });
         }, 4000);
 
-        // set click counter back to zero
+        // Set click counter back to zero
         clickOnCards = 0;
     }
 }
 
 // The timer is taken from https://codepen.io/ishanbakshi/pen/pgzNMv and modified
-
 const a = setInterval(startTimer, 1000);
 
 /**
- * timer function
+ * Starts countdown timer along witch checkSecond() function
+ * When timer is reaches zero, call to gaveover() function
  */
 
 function startTimer() {
 
-    //get the current time
+    // Get the current time
     let presentTime = document.getElementById('time-remaining').innerHTML;
 
-    // split to get minute and hour
+    // Split to get minute and hour
     let timeArray = presentTime.split(/[:]+/);
     let m = timeArray[0];
     let s = checkSecond((timeArray[1] - 1));
 
-    // second countdown timer, which is executed every 1000 ms
+    // Second countdown timer, which is executed every 1000 ms
     if (s == 59) { m = m - 1 }
 
-    // update minutes
+    // Update minutes
     if (m < 0) {
         // call runOutofTime
-
         gameOver("outOfTime", 2, 2);
-
         return //important to terminate the function execution
     }
-    // update time on html element
+    // Update time on html element
     document.getElementById('time-remaining').innerHTML =
         m + ":" + s;
-
 }
 
-// function calls itself every 1000 ms ie every second
-
-
+/**
+ * Updates second when it is in single digit and when minutes change
+ * @param {number} sec Takes second value from StartTimer() func
+ * @returns {number} sec Returns updated value
+ */
 function checkSecond(sec) {
     if (sec < 10 && sec >= 0) { sec = "0" + sec }; // add zero in front of numbers < 10
     if (sec < 0) { sec = "59" };
     return sec;
 }
-
+/**
+ * 
+ * @param {*} gameStatus 
+ * @param {*} currentLevel 
+ * @param {*} nextLevel 
+ */
 function gameOver(gameStatus, currentLevel, nextLevel) {
     alert(gameStatus);
     clearInterval(a); // stop timer
 
-    //disable clickevents on all cards
+    // Disable clickevents on all cards
     for (let index = 0; index < cards.length; index++) {
         const element = cards[index];
         element.classList.add("noClick");
@@ -348,7 +336,7 @@ function gameOver(gameStatus, currentLevel, nextLevel) {
     if (gameStatus == "outOfTime" || gameStatus == "outOfFlips") {
         let retry = confirm("Would you like to retry?");
         if (retry == true) {
-            //reload game i.e. refresh the page
+            // Reload game i.e. refresh the page
             window.location.href = "game.html";
         } else {
             debugger;
