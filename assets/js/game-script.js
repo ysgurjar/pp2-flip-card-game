@@ -293,7 +293,7 @@ function twoCardsFlipped() {
 
 // The timer is taken from https://codepen.io/ishanbakshi/pen/pgzNMv and modified
 
-const a=setInterval(startTimer,1000);
+const a = setInterval(startTimer, 1000);
 
 /**
  * timer function
@@ -315,15 +315,14 @@ function startTimer() {
     // update minutes
     if (m < 0) {
         // call runOutofTime
-          
-        gameOver("TimeOut",2,2);
-        
+
+        gameOver("outOfTime", 2, 2);
+
         return //important to terminate the function execution
     }
     // update time on html element
     document.getElementById('time-remaining').innerHTML =
         m + ":" + s;
-
 
 }
 
@@ -336,14 +335,43 @@ function checkSecond(sec) {
     return sec;
 }
 
-function gameOver(gameStatus, currentLevel, NextLevel) {
+function gameOver(gameStatus, currentLevel, nextLevel) {
     alert(gameStatus);
-    clearInterval(a);
+    clearInterval(a); // stop timer
+
     //disable clickevents on all cards
     for (let index = 0; index < cards.length; index++) {
         const element = cards[index];
         element.classList.add("noClick");
     }
+    
+    if (gameStatus == "outOfTime" || gameStatus == "outOfFlips") {
+        let retry = confirm("Would you like to retry?");
+        if (retry == true) {
+            //reload game i.e. refresh the page
+            window.location.href = "game.html";
+        } else {
+            debugger;
+            //set local variable to current level
+            window.localStorage.setItem("level",level);
+            // take them back to levels page
+            window.location.href = "levels.html";
+        }
+    }
+    
+    if (gameStatus=="success" && nextLevel<=5) {
+        let nextLevel=confirm("Congratulations! Go to next level?");
+        if (nextLevel==true) {
+            //take them back to levels page with +1 level selected.
+            window.localStorage.setItem("level",parseInt(level)+1);
+            window.location.href = "levels.html";
+        } else {
+            // take them back to levels page
+            confirm("you have beat the game. May be you got lucky. Try again?");
+        }
+    }
+
+
 }
 
 function checkRemainingTime() {
@@ -383,21 +411,22 @@ function checkRemainingFlips() {
     if (isFlipsRemaining) {
         return true;
     } else {
-        
+
         return false;
     }
 }
 
 // setting game abort function
 
-homeBtn=document.getElementById("home");
+let homeBtn = document.getElementById("home");
 
 homeBtn.addEventListener('click', () => {
-    
-       let a=confirm("would you like to abort?");
-       
-       if (a==true) {
-        window.location.href="levels.html";
-       }
-       
-    } )
+
+    let abort = confirm("would you like to abort?");
+
+    if (abort == true) {
+        window.location.href = "levels.html";
+    }
+
+})
+

@@ -50,7 +50,7 @@ levelData={
 let predefinedLevel=window.localStorage.getItem("level");
 // if user is redirected from the game page then a certain level needs to be selected
 if (predefinedLevel=== null) {
-    window.localStorage.setItem("level",1);
+    window.localStorage.setItem("level",); 
 } else {
     window.localStorage.setItem("level",predefinedLevel);
 }
@@ -138,6 +138,10 @@ for (let index = 0; index < levels.length; index++) {
     })
 }
 
+// simulate a click
+
+levels[parseInt(predefinedLevel)-1].click();
+
 //Get HTML collection of slider
 sliders = document.getElementsByClassName("slider");
 
@@ -147,7 +151,6 @@ for (let index = 0; index < sliders.length; index++) {
 }
 
 //add event listener to cta btn
-
 
 playBtn=document.getElementById("play-btn");
 
