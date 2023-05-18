@@ -41,7 +41,7 @@ levelData={
         accuracy:5,
         speed:5,
 
-        cards:4,
+        cards:36,
         flipsMax:99,
         timeMax:"07:00"
     }
