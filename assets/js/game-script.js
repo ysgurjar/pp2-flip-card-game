@@ -33,28 +33,28 @@ for (let index = 0; index < cards.length; index++) {
 
 // Create an array containing images path
 let cardImages = [
-    "/assets/images/game-angry-bird.png",
-    "/assets/images/game-bee.png",
-    "/assets/images/game-bird-blue.png",
-    "/assets/images/game-cloud.png",
-    "/assets/images/game-cockroach.png",
-    "/assets/images/game-discoball.png",
-    "/assets/images/game-eel.png",
-    "/assets/images/game-fish-2.png",
-    "/assets/images/game-fish.png",
-    "/assets/images/game-football.png",
-    "/assets/images/game-lion.png",
-    "/assets/images/game-mosquito.png",
-    "/assets/images/game-mountain-2.png",
-    "/assets/images/game-mountain.png",
-    "/assets/images/game-pokemon.png",
-    "/assets/images/game-star-yellow.png",
-    "/assets/images/game-star.png",
-    "/assets/images/game-sun.png",
-    "/assets/images/game-tiger.png",
-    "/assets/images/game-tree-2.png",
-    "/assets/images/game-tree.png",
-    "/assets/images/whale.png",
+    "assets/images/game-angry-bird.png",
+    "assets/images/game-bee.png",
+    "assets/images/game-bird-blue.png",
+    "assets/images/game-cloud.png",
+    "assets/images/game-cockroach.png",
+    "assets/images/game-discoball.png",
+    "assets/images/game-eel.png",
+    "assets/images/game-fish-2.png",
+    "assets/images/game-fish.png",
+    "assets/images/game-football.png",
+    "assets/images/game-lion.png",
+    "assets/images/game-mosquito.png",
+    "assets/images/game-mountain-2.png",
+    "assets/images/game-mountain.png",
+    "assets/images/game-pokemon.png",
+    "assets/images/game-star-yellow.png",
+    "assets/images/game-star.png",
+    "assets/images/game-sun.png",
+    "assets/images/game-tiger.png",
+    "assets/images/game-tree-2.png",
+    "assets/images/game-tree.png",
+    "assets/images/whale.png",
 ];
 
 // Assign a pair of random images to a random pair of cards
@@ -332,7 +332,7 @@ function gameOver(gameStatus, currentLevel, nextLevel) {
         const element = cards[index];
         element.classList.add("noClick");
     }
-    
+
     if (gameStatus == "outOfTime" || gameStatus == "outOfFlips") {
         let retry = confirm("Would you like to retry?");
         if (retry == true) {
@@ -341,17 +341,17 @@ function gameOver(gameStatus, currentLevel, nextLevel) {
         } else {
             debugger;
             //set local variable to current level
-            window.localStorage.setItem("level",level);
+            window.localStorage.setItem("level", level);
             // take them back to levels page
             window.location.href = "levels.html";
         }
     }
-    
-    if (gameStatus=="success" && nextLevel<=5) {
-        let nextLevel=confirm("Congratulations! Go to next level?");
-        if (nextLevel==true) {
+
+    if (gameStatus == "success" && nextLevel <= 5) {
+        let nextLevel = confirm("Congratulations! Go to next level?");
+        if (nextLevel == true) {
             //take them back to levels page with +1 level selected.
-            window.localStorage.setItem("level",parseInt(level)+1);
+            window.localStorage.setItem("level", parseInt(level) + 1);
             window.location.href = "levels.html";
         } else {
             // take them back to levels page

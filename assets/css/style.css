@@ -63,7 +63,7 @@ header h1 {
 /* == MAIN ELEMENT STYLES == */
 .wave-container {
     height: clamp(50px, 2.5vw, 100px);
-    background-image: url("/assets/images/wavesOpacity.svg");
+    background-image: url("assets/images/wavesOpacity.svg");
 }
 
 /* setting layout on index.html page */
