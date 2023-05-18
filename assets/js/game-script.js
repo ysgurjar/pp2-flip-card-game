@@ -348,18 +348,30 @@ function gameOver(gameStatus, currLevel) {
     }
 
     if (gameStatus == "success" && currLevel <= 4) {
+        debugger;
         let goToNextLevel = confirm("Congratulations! Go to next level?");
         if (goToNextLevel == true) {
             //take them back to levels page with +1 level selected.
             window.localStorage.setItem("level", parseInt(level) + 1);
             window.location.href = "levels.html";
         }
+        else {
+            //take them back to levels page with same level selected.
+            window.localStorage.setItem("level", parseInt(level));
+            window.location.href = "levels.html";
+        }
+    
     } else if (gameStatus == "success" && currLevel == 5) {
         // take them back to levels page
-        let tryAgain= confirm("you have beat the game. You are smart! May be you just got lucky. Try again?");
+        debugger;
+        let tryAgain= confirm("You are a winner You are smart! May be you just got lucky. Try again?");
         if (tryAgain == true) {
             // Reload game i.e. refresh the page
             window.location.href = "game.html";
+        } else {
+            //take them back to levels page with same level selected.
+            window.localStorage.setItem("level", parseInt(level));
+            window.location.href = "levels.html";
         }
     }
 
