@@ -50,7 +50,7 @@ levelData={
 let predefinedLevel=window.localStorage.getItem("level");
 // if user is redirected from the game page then a certain level needs to be selected
 if (predefinedLevel=== null) {
-    window.localStorage.setItem("level",); 
+    window.localStorage.setItem("level",1); 
 } else {
     window.localStorage.setItem("level",predefinedLevel);
 }
