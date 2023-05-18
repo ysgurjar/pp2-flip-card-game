@@ -128,17 +128,17 @@ cards.forEach(element => {
         let isTimeRemaining = checkRemainingTime()
 
         // Call to game over function if there is no time left
-        if (!isTimeRemaining) { gameOver("outOfTime", 2, 2) }
+        if (!isTimeRemaining) { gameOver("outOfTime", level) }
 
         // Check flip remaining, returns true is flips are remaining
         let isFlipsRemaining = checkRemainingFlips()
 
         // Call game over if there are no flips left
-        if (!isFlipsRemaining) { gameOver("outOfFlips", 2, 2) }
+        if (!isFlipsRemaining) { gameOver("outOfFlips", level) }
 
         // Call game over if all cards are revealed
         let isAllCardsRevealed = checkAllCardsRevealed()
-        if (isAllCardsRevealed) { gameOver("success", 2, 2) }
+        if (isAllCardsRevealed) { gameOver("success", level) }
 
         // Flip the card if the card is not already flipped and it is one of the first two cards
         if (isTimeRemaining && isFlipsRemaining && isAllCardsRevealed == false) {
@@ -243,7 +243,7 @@ function twoCardsFlipped() {
 
         // Fifth, check if all cards are flipped , add delay to allow the flipcard animation  
         setTimeout(() => {
-            if (flippedCards.length === cards.length) { gameOver("success", 2, 2) }
+            if (flippedCards.length === cards.length) { gameOver("success", level) }
         }, 1000)
 
     } else {
@@ -299,7 +299,7 @@ function startTimer() {
     // Update minutes
     if (m < 0) {
         // call runOutofTime
-        gameOver("outOfTime", 2, 2);
+        gameOver("outOfTime", level);
         return //important to terminate the function execution
     }
     // Update time on html element
@@ -321,9 +321,9 @@ function checkSecond(sec) {
  * 
  * @param {*} gameStatus 
  * @param {*} currentLevel 
- * @param {*} nextLevel 
+ * @param {*} currLevel 
  */
-function gameOver(gameStatus, currentLevel, nextLevel) {
+function gameOver(gameStatus, currLevel) {
     alert(gameStatus);
     clearInterval(a); // stop timer
 
@@ -347,15 +347,19 @@ function gameOver(gameStatus, currentLevel, nextLevel) {
         }
     }
 
-    if (gameStatus == "success" && nextLevel <= 5) {
-        let nextLevel = confirm("Congratulations! Go to next level?");
-        if (nextLevel == true) {
+    if (gameStatus == "success" && currLevel <= 4) {
+        let goToNextLevel = confirm("Congratulations! Go to next level?");
+        if (goToNextLevel == true) {
             //take them back to levels page with +1 level selected.
             window.localStorage.setItem("level", parseInt(level) + 1);
             window.location.href = "levels.html";
-        } else {
-            // take them back to levels page
-            confirm("you have beat the game. May be you got lucky. Try again?");
+        }
+    } else if (gameStatus == "success" && currLevel == 5) {
+        // take them back to levels page
+        let tryAgain= confirm("you have beat the game. You are smart! May be you just got lucky. Try again?");
+        if (tryAgain == true) {
+            // Reload game i.e. refresh the page
+            window.location.href = "game.html";
         }
     }
 
