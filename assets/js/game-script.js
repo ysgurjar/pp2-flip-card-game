@@ -60,6 +60,9 @@ let cardImages = [
 // Assign a pair of random images to a random pair of cards
 assignCards();
 
+/**
+ * Assign random background to a randomly selected pair of cards
+ */
 function assignCards() {
     let index = 0;
     while (numberOfUnassignedCards.length > 0) {
@@ -100,6 +103,9 @@ function assignCards() {
     }
 }
 
+/**
+ * Populate all cards on grid layout with front and back side
+ */
 function addElement() {
     // Create a new div element
     const newDiv = document.createElement("div");
@@ -119,6 +125,7 @@ function addElement() {
     currentDiv.appendChild(newDiv);
 }
 
+// Attach event listener to each card
 cards.forEach(element => {
     element.addEventListener('click', function () {
         // Run click counter, returns no of cards flipped after reset after counter reset(i.e.1 or 2)
@@ -189,7 +196,7 @@ function clickCounter() {
 }
 
 /**
- * Checks for next action after user flips two cards
+ * Check for next action after user flips two cards
  */
 function twoCardsFlipped() {
 
@@ -318,10 +325,9 @@ function checkSecond(sec) {
     return sec;
 }
 /**
- * 
- * @param {*} gameStatus 
- * @param {*} currentLevel 
- * @param {*} currLevel 
+ * Check reason for game over and current level and accordingly call next step
+ * @param {string} gameStatus 
+ * @param {number} currLevel  
  */
 function gameOver(gameStatus, currLevel) {
     alert(gameStatus);
@@ -394,6 +400,10 @@ function checkRemainingTime() {
     }
 }
 
+/**
+ * Check if user has revealed all cards
+ * @returns true when all card are revealed and matched
+ */
 function checkAllCardsRevealed() {
     let NoOfRevealedCards = Array.prototype.filter.call( //returns a shallow copy
         cards,
@@ -407,7 +417,10 @@ function checkAllCardsRevealed() {
 
     }
 }
-
+/**
+ * Check if user has any remaining flips
+ * @returns true if user has remaining flips
+ */
 function checkRemainingFlips() {
     let flipsRemaining = document.getElementById("flips-remaining").innerText;
     let isFlipsRemaining = (flipsRemaining > 0);
@@ -420,17 +433,12 @@ function checkRemainingFlips() {
     }
 }
 
-// setting game abort function
-
+// setting game abort function on home button
 let homeBtn = document.getElementById("home");
-
 homeBtn.addEventListener('click', () => {
-
     let abort = confirm("would you like to abort?");
-
     if (abort == true) {
         window.location.href = "levels.html";
     }
-
 })
 
