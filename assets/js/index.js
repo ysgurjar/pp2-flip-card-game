@@ -7,5 +7,5 @@ let demoCards = [demoCard1, demoCard2];
 demoCards.forEach(element => {
     element.addEventListener('click', () => {
         element.classList.toggle("flipCard");
-    })
+    });
 });

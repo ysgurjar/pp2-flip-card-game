@@ -1,5 +1,5 @@
 //initialise global objects
-levelData={
+let levelData={
     1:{
         memory:1,
         accuracy:1,
@@ -46,7 +46,7 @@ levelData={
         timeMax:"07:00"
     }
 
-}
+};
 
 let predefinedLevel=window.localStorage.getItem("level");
 // if user is redirected from the game page then a certain level needs to be selected
@@ -82,9 +82,9 @@ function resetBg(selectedLevelElement) {
 function resetSlider(selectedLevel) {
     
     //Get values
-    cards=String(levelData[selectedLevel]["cards"]);
-    flipsMax=String(levelData[selectedLevel]["flipsMax"]);
-    timeMax=String(levelData[selectedLevel]["timeMax"]);
+    let cards=String(levelData[selectedLevel]["cards"]);
+    let flipsMax=String(levelData[selectedLevel]["flipsMax"]);
+    let timeMax=String(levelData[selectedLevel]["timeMax"]);
     
     //Set values
     document.getElementById("no-of-cards").innerText=cards;
@@ -99,9 +99,9 @@ function resetSlider(selectedLevel) {
 function resetRules(selectedLevel) {
     
     //Get values
-    memory=String(levelData[selectedLevel]["memory"]);
-    accuracy=String(levelData[selectedLevel]["accuracy"]);
-    speed=String(levelData[selectedLevel]["speed"]);
+    let memory=String(levelData[selectedLevel]["memory"]);
+    let accuracy=String(levelData[selectedLevel]["accuracy"]);
+    let speed=String(levelData[selectedLevel]["speed"]);
 
     //Set values
     document.getElementById("memory-slider").setAttribute("value", memory);
@@ -116,9 +116,9 @@ function resetRules(selectedLevel) {
 function setLocalstorage(selectedLevel) {
         
     //Get values
-    cards=String(levelData[selectedLevel]["cards"]);
-    flipsMax=String(levelData[selectedLevel]["flipsMax"]);
-    timeMax=String(levelData[selectedLevel]["timeMax"]);
+    let cards=String(levelData[selectedLevel]["cards"]);
+    let flipsMax=String(levelData[selectedLevel]["flipsMax"]);
+    let timeMax=String(levelData[selectedLevel]["timeMax"]);
 
     //Set local storage
     window.localStorage.setItem("level",selectedLevel);
@@ -142,14 +142,14 @@ for (let index = 0; index < levels.length; index++) {
         //set local storage
         setLocalstorage(levelSelected);
        
-    })
+    });
 }
 
 // simulate a click
 levels[parseInt(predefinedLevel)-1].click();
 
 //Get HTML collection of slider
-sliders = document.getElementsByClassName("slider");
+let sliders = document.getElementsByClassName("slider");
 
 //Disable slider
 for (let index = 0; index < sliders.length; index++) {
@@ -157,7 +157,7 @@ for (let index = 0; index < sliders.length; index++) {
 }
 
 //add event listener to cta btn
-playBtn=document.getElementById("play-btn");
+let playBtn=document.getElementById("play-btn");
 
 playBtn.addEventListener('click', () => {
     let levelIdTextOnCTA=document.getElementById("level-id-text-on-CTA").innerText;
@@ -167,4 +167,4 @@ playBtn.addEventListener('click', () => {
     } else {
         window.location.href="game.html";
     }
-})
+});
