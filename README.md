@@ -1,5 +1,7 @@
 ![Banner](docs/banner.png)
 
+![Responsive](docs/am-i-responsive.png)
+
 [Live Webpage](https://ysgurjar.github.io/pp2-flip-card-game/)
 
 ## Table of Content
