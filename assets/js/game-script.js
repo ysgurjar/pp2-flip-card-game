@@ -406,13 +406,13 @@ function checkRemainingTime() {
 function checkAllCardsRevealed() {
     let NoOfRevealedCards = Array.prototype.filter.call( //returns a shallow copy
         cards,
-        (card) => card.classList.contains("card2 flipCard noClick revealed") === false
+        (card) => card.classList.contains("card2 flipCard noClick revealed") === true
     );
 
-    if (cards.length == NoOfRevealedCards) {
-        return false;
-    } else {
+    if (cards.length == NoOfRevealedCards.length) {
         return true;
+    } else {
+        return false;
 
     }
 }
