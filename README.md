@@ -14,6 +14,18 @@
     2. [The content requirements](#the-content-requirements)
     3. [The feasibility study](#the-feasibility-study)
     4. [The user stories](#the-user-stories)
+3. [The Structure and Skeleton Plane](#the-structure-plane)
+    1. [Game logic](#game-logic)
+    2. [Wireframe](#wireframe)
+4. [Testing](#testing)
+    1. [Code validation](#code-validation)
+    2. [Performance](#performance)
+    3. [Interactivity](#interactivity)
+    4. [User story testing](#user-story-testing)
+5. [Future work](#future-work)
+    
+6. [References](#references)
+
 <hr>
 
 # Stretegy Plane
@@ -63,11 +75,23 @@ Based on the study, the following features were selected for the first release.
 
 ![Feasibility matrix](docs/feasibility-matrix.png)
 
-### The user stories
+## The user stories
+
+1. As a first-time user, I want to know what the game is about so that I can decide whether to proceed further or not.
+2. As a first-time or returning user, I want to select the level of difficulty so that I can play the game.
+3. As a player, I want to know the rules before the challenge begins.
+4. As a player, after reading the rules I want to decide whether to proceed with the current level or abort.
+5. As a player, I want to see a clear overview of how far I am in the game, so I can adjust my strategy to win.
+6. As a player, I want to be able to abort the game anytime I want.
+7. As a player, after losing the game I should have an option to retry.
+8. As a player, after winning the game I want to have an option to share my results with others.
+9. As a player, after winning the game I want to go to the next level.
+10. As a player, after I have passed the maximum difficultly level, I want to know what is coming soon.
+11. As a player, if I have new ideas or encountered bugs I should be able to share them with the website owner.
 
 [def]: docs/feasibility-matrix.png
 
-# The Structure Plane
+# The Structure and Skeleton Plane
 
 ### Game logic
 
@@ -80,3 +104,148 @@ The following [image](docs/card-game-logic.png) explains the core logic of the g
 ![image](docs/card-game-logic.png)
 
 ### Wireframe
+
+Mobile first approach was selected because of expected user traffic on mobile platform. The approach is to create wireframe for mobile and then write media queries to accomodate the desktop version.
+
+[Wireframe and mock up](docs/wireframe.png) are created in figma. As you can see, a simple two tone color design was selected. 
+
+![Wireframe and mock up](docs/wireframe.png) 
+
+# Testing
+
+## Code validation
+All HTML pages were tested on [W3C validator]("https://validator.w3.org/#validate_by_input") --> No errors
+
+All CSS pages were tested on [Jigsaw validator]("https://jigsaw.w3.org/css-validator/#validate_by_input")--> No errors
+
+All JS pages were tested on [jshint]("https://jshint.com/") --> No errors found
+
+The site was tested for accessibility and contrast errors on [wave](!https://wave.webaim.org/) --> No common errors or contrast errors
+
+No critical warning are present in all cases
+
+## Performance
+
+The lighthouse score is greater than 90 for all criteria and all webpages.
+
+![lighthouse performance score](docs/lighthouse-performance-score.png)
+
+## Interactivity
+
+<details>
+<summary>The interactivity on home page
+</summary>
+
+![interactive front page gif](docs/interactive-front-page.gif)
+
+</details>
+
+<details>
+<summary> The interactivity on level selector page
+</summary>
+
+![interactive front page gif](docs/interactive-level-page.gif)
+
+</details>
+
+<details>
+<summary>The interactivity on game page
+</summary>
+
+![interactive front page gif](docs/interactive-game-page.gif)
+
+</details>
+
+## User story testing
+1. As a first-time user, I want to know what the game is about so that I can decide whether to proceed further or not.
+    
+    Feature Implementation: Display rules on the home page
+
+    <details><summary>Screenshot</summary>
+    
+    ![display game rules on home page](docs/user-story-testing-display-game-rules.png)
+    </details>
+
+2. As a first-time or returning user, I want to select the level of difficulty so that I can play the game.
+    Feature Implementation: Make a level selector page
+
+    <details><summary>Screenshot</summary>
+
+    ![interactive game page gif](docs/interactive-level-page.gif)
+    </details>
+3. As a player, I want to know the rules before the challenge begins.
+
+    Feature Implementation: Display rules on the level page
+
+    <details><summary>Screenshot</summary>
+    
+    ![display rules on level selector page](docs/user-story-testing-display-rules.png)
+    </details>
+4. As a player, after reading the rules I want to decide whether to proceed with the current level or abort.
+
+    Feature Implementation: Let the user initiate an action by clicking on PLAY btn
+
+    <details><summary>Screenshot</summary>
+
+    ![game play btn on webpage](docs/user-story-testing-play-btn.png)
+    </details>
+5. As a player, I want to see a clear overview of how far I am in the game, so I can adjust my strategy to win.
+
+    Feature Implementation: Display the time and flips remaining on top of the page
+
+    <details><summary>Screenshot</summary>
+    
+    ![display stats on top of page](docs/user-story-testing-display-stats.png)
+    </details>
+6. As a player, I want to be able to abort the game anytime I want.
+
+    Feature Implementation: Enable the home button to take back to levels if user wishes to abort in the middle of the game
+
+    <details><summary>Screenshot</summary>
+    
+    ![on home btn click abort](docs/user-story-testing-abort.png)
+    </details>
+7. As a player, after losing the game I should have an option to retry.
+
+    Feature Implementation: Prompt the user to retry when he runs out of time or flips. When confirmed, reload the game with new random assignment of cards
+
+    <details><summary>Screenshot</summary>
+    
+    ![user prompt to retry](docs/user-story-testing-retry-upon-failure.png)
+    </details>
+8. As a player, after winning the game I want to have an option to share my results with others.
+
+    Feature Implementation: Pending, to be covered in the next sprint
+    
+9. As a player, after winning the game I want to go to the next level.
+
+    Feature Implementation: Select next level automatically when the user succeeds and take him back to levels page so he can read the rules for the selected level.
+
+    <details><summary>Screenshot</summary>
+
+    ![after complete select next level](docs/user-story-testing-success-next-level.png)
+    </details>
+10. As a player, after I have passed the maximum difficultly level, I want to know what is coming soon.
+
+    Feature Implementation: Pending, to be covered in the next sprint
+
+11. As a player, if I have new ideas or encountered bugs I should be able to share them with the website owner.
+
+    Feature Implementation: Pending, to be covered in the next sprint
+
+# Future Work
+
+- Instead of an alert, implement dialog or modal for better user experience
+- Implement features related to pending user stories which is 8,10,11 which correspond to opportunities F,G and D as described under [Feasibility matrix](docs/feasibility-matrix.png)
+
+
+# References
+
+The flipcard CSS effect is taken from [Jefferson Cuarta](https://jefferson-cuartas.medium.com/how-to-create-a-flip-card-effect-using-javascript-767dd945210c).
+
+The timer function is taken from the following [Codepen](https://codepen.io/ishanbakshi/pen/pgzNMv) created by Shashan Bakshi.
+
+All the images are taken from [pngwing](https://www.pngwing.com/) website that are distributed under Non-commercial use, DMCA licence and does not require individual credit.
+
+### Special thanks to my mentor M.Shami for support and guidance.
+ 
