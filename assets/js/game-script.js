@@ -13,8 +13,7 @@ document.getElementById("title").style.display = "none";
 document.getElementById("time-remaining").innerText = timeMax;
 document.getElementById("flips-remaining").innerText = flipsMax;
 
-// Create a default gamestatus and clickOnCards global counter
-let gamestatus = "running";
+// Create clickOnCards global counter
 let clickOnCards = 0;
 
 // Dynamically create card elements 
@@ -132,24 +131,24 @@ cards.forEach(element => {
         let cardsFlipped = clickCounter();
 
         // Check time remaining, returns true if time is remaining
-        let isTimeRemaining = checkRemainingTime()
+        let isTimeRemaining = checkRemainingTime();
 
         // Call to game over function if there is no time left
-        if (!isTimeRemaining) { gameOver("outOfTime", level) }
+        if (!isTimeRemaining) { gameOver("outOfTime", level); }
 
         // Check flip remaining, returns true is flips are remaining
-        let isFlipsRemaining = checkRemainingFlips()
+        let isFlipsRemaining = checkRemainingFlips();
 
         // Call game over if there are no flips left
-        if (!isFlipsRemaining) { gameOver("outOfFlips", level) }
+        if (!isFlipsRemaining) { gameOver("outOfFlips", level); }
 
         // Call game over if all cards are revealed
-        let isAllCardsRevealed = checkAllCardsRevealed()
-        if (isAllCardsRevealed) { gameOver("success", level) }
+        let isAllCardsRevealed = checkAllCardsRevealed();
+        if (isAllCardsRevealed) { gameOver("success", level); }
 
         // Flip the card if the card is not already flipped and it is one of the first two cards
         if (isTimeRemaining && isFlipsRemaining && isAllCardsRevealed == false) {
-            flipCard(element, cardsFlipped)
+            flipCard(element, cardsFlipped);
         }
         // Call twoCardsFlipped to check conditions when two cards are flipped
         if (cardsFlipped == 2) {
@@ -250,8 +249,8 @@ function twoCardsFlipped() {
 
         // Fifth, check if all cards are flipped , add delay to allow the flipcard animation  
         setTimeout(() => {
-            if (flippedCards.length === cards.length) { gameOver("success", level) }
-        }, 1000)
+            if (flippedCards.length === cards.length) { gameOver("success", level); }
+        }, 1000);
 
     } else {
         // After 4 sec, flip cards back and enable click events
@@ -301,13 +300,13 @@ function startTimer() {
     let s = checkSecond((timeArray[1] - 1));
 
     // Second countdown timer, which is executed every 1000 ms
-    if (s == 59) { m = m - 1 }
+    if (s == 59) { m = m - 1; }
 
     // Update minutes
     if (m < 0) {
         // call runOutofTime
         gameOver("outOfTime", level);
-        return //important to terminate the function execution
+        return; //important to terminate the function execution
     }
     // Update time on html element
     document.getElementById('time-remaining').innerHTML =
@@ -320,8 +319,8 @@ function startTimer() {
  * @returns {number} sec Returns updated value
  */
 function checkSecond(sec) {
-    if (sec < 10 && sec >= 0) { sec = "0" + sec }; // add zero in front of numbers < 10
-    if (sec < 0) { sec = "59" };
+    if (sec < 10 && sec >= 0) { sec = "0" + sec; } // add zero in front of numbers < 10
+    if (sec < 0) { sec = "59"; }
     return sec;
 }
 /**
@@ -391,7 +390,7 @@ function checkRemainingTime() {
     // split to get minute and hour
     let timeArray = presentTime.split(/[:]+/);
     let m = timeArray[0];
-    let s = checkSecond((timeArray[1] - 1));
+    
 
     if (m < 0) {
         return false;
@@ -410,7 +409,7 @@ function checkAllCardsRevealed() {
         (card) => card.classList.contains("card2 flipCard noClick revealed") === false
     );
 
-    if (cards.length = NoOfRevealedCards) {
+    if (cards.length == NoOfRevealedCards) {
         return false;
     } else {
         return true;
@@ -440,5 +439,5 @@ homeBtn.addEventListener('click', () => {
     if (abort == true) {
         window.location.href = "levels.html";
     }
-})
+});
 
