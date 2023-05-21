@@ -47,7 +47,7 @@ levelData={
     }
 
 }
-let predefinedLevel=window.localStorage.getItem("level");
+
 // if user is redirected from the game page then a certain level needs to be selected
 if (predefinedLevel=== null || predefinedLevel > 5) {
     window.localStorage.setItem("level",1); 
@@ -55,6 +55,7 @@ if (predefinedLevel=== null || predefinedLevel > 5) {
     window.localStorage.setItem("level",predefinedLevel);
 }
 
+let predefinedLevel=window.localStorage.getItem("level");
 /**
  * The function resets the background color on level selector and make sure only one level is selected
  */
