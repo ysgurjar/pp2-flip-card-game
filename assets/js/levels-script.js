@@ -59,7 +59,8 @@ if (predefinedLevel=== null || predefinedLevel > 5) {
 }
 
 /**
- * The function resets the background color on level selector and make sure only one level is selected
+ *  Set the background color on level selector and make sure only one level is selected
+ * @param {element} selectedLevelElement 
  */
 function resetBg(selectedLevelElement) {
 
@@ -75,7 +76,8 @@ function resetBg(selectedLevelElement) {
 }
 
 /**
- * The function displays rules according to the selected level
+ * Displays rules according to the selected level
+ * @param {element} selectedLevel
  */
 function resetSlider(selectedLevel) {
     
@@ -91,7 +93,8 @@ function resetSlider(selectedLevel) {
 }
 
 /**
- * The function resets the slider to represent current level stats
+ * Resets the slider to represent current level stats
+ *  @param {element} selectedLevel
  */
 function resetRules(selectedLevel) {
     
@@ -107,7 +110,8 @@ function resetRules(selectedLevel) {
 }
 
 /**
- * The function storage locally info related to selected level
+ * Store locally info related to selected level
+ *  @param {element} selectedLevel
  */
 function setLocalstorage(selectedLevel) {
         
@@ -142,7 +146,6 @@ for (let index = 0; index < levels.length; index++) {
 }
 
 // simulate a click
-
 levels[parseInt(predefinedLevel)-1].click();
 
 //Get HTML collection of slider
@@ -154,7 +157,6 @@ for (let index = 0; index < sliders.length; index++) {
 }
 
 //add event listener to cta btn
-
 playBtn=document.getElementById("play-btn");
 
 playBtn.addEventListener('click', () => {
@@ -165,5 +167,4 @@ playBtn.addEventListener('click', () => {
     } else {
         window.location.href="game.html";
     }
-    
 })
