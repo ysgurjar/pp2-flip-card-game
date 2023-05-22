@@ -23,10 +23,10 @@
     1. [Code validation](#code-validation)
     2. [Performance](#performance)
     3. [Interactivity](#interactivity)
-    4. [User story testing](#user-story-testing)
+    4. [User story testing with implemented features](#user-story-testing)
 5. [Future work](#future-work)
-    
-6. [References](#references)
+6. [Deployment]()    
+7. [References](#references)
 
 <hr>
 
