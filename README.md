@@ -19,13 +19,17 @@
 3. [The Structure and Skeleton Plane](#the-structure-plane)
     1. [Game logic](#game-logic)
     2. [Wireframe](#wireframe)
-4. [Testing](#testing)
+4. [Deployment]() 
+5. [Testing](#testing)
     1. [Code validation](#code-validation)
     2. [Performance](#performance)
     3. [Interactivity](#interactivity)
     4. [User story testing with implemented features](#user-story-testing)
-5. [Future work](#future-work)
-6. [Deployment]()    
+    5. [Browser compatibility](#browswer-compatibility)
+    6. [Responsiveness](#responsiveness)
+    7. [Bugs](#bugs)
+6. [Future work](#future-work)
+   
 7. [References](#references)
 
 <hr>
@@ -113,18 +117,50 @@ Mobile first approach was selected because of expected user traffic on mobile pl
 
 ![Wireframe and mock up](docs/wireframe.png) 
 
+# Deployment
+
+The website was deployed using GitHub Pages by following these steps:
+1. In the GitHub repository navigate to the Settings tab
+2. On the left hand menu select Pages
+3. For the source select Branch: master
+4. After the webpage refreshes automaticaly you will se a ribbon on the top saying: "Your site is published at https://ysgurjar.github.io/pp2-flip-card-game/"
+
+You can for fork the repository by following these steps:
+1. Go to the GitHub repository
+2. Click on Fork button in upper right hand corner
+
+You can clone the repository by following these steps:
+1. Go to the GitHub repository 
+2. Locate the Code button above the list of files and click it 
+3. Select if you prefere to clone using HTTPS, SSH, or Github CLI and click the copy button to copy the URL to your clipboard
+4. Open Git Bash
+5. Change the current working directory to the one where you want the cloned directory
+6. Type git clone and paste the URL from the clipboard ($ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY)
+7. Press Enter to create your local clone.
+
 # Testing
 
 ## Code validation
-All HTML pages were tested on [W3C validator]("https://validator.w3.org/#validate_by_input") --> No errors
+- All HTML pages were tested on [W3C validator]("https://validator.w3.org/#validate_by_input") --> No errors
 
-All CSS pages were tested on [Jigsaw validator]("https://jigsaw.w3.org/css-validator/#validate_by_input")--> No errors
+    - index.html [results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fysgurjar.github.io%2Fpp2-flip-card-game%2F)
 
-All JS pages were tested on [jshint]("https://jshint.com/") --> No errors found
+    - levels.html [results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fysgurjar.github.io%2Fpp2-flip-card-game%2Flevels.html) 
 
-The site was tested for accessibility and contrast errors on [wave](!https://wave.webaim.org/) --> No common errors or contrast errors
+    - game.html [results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fysgurjar.github.io%2Fpp2-flip-card-game%2Fgame.html) 
 
-No critical warning are present in all cases
+
+- All CSS pages were tested on [Jigsaw validator]("https://jigsaw.w3.org/css-validator/#validate_by_input") via direct input--> No errors
+
+
+- All JS pages were tested on [jshint]("https://jshint.com/") via direct input--> No errors found
+
+- The site was tested for accessibility and contrast errors on [wave](!https://wave.webaim.org/) --> No common errors or contrast errors
+    - index.html [results](https://wave.webaim.org/report#/https://ysgurjar.github.io/pp2-flip-card-game/index.html)
+    - levels.html [results](https://wave.webaim.org/report#/https://ysgurjar.github.io/pp2-flip-card-game/levels.html)
+    - game.html [results](https://ysgurjar.github.io/pp2-flip-card-game/game.html)
+    
+- No critical warning are present in all cases
 
 ## Performance
 
@@ -158,10 +194,10 @@ The lighthouse score is greater than 90 for all criteria and all webpages.
 
 </details>
 
-## User story testing
+## User story testing and feature implementation
 1. As a first-time user, I want to know what the game is about so that I can decide whether to proceed further or not.
     
-    Feature Implementation: Display rules on the home page
+    **Feature Implementation**: Display rules on the home page
 
     <details><summary>Screenshot</summary>
     
@@ -169,7 +205,8 @@ The lighthouse score is greater than 90 for all criteria and all webpages.
     </details>
 
 2. As a first-time or returning user, I want to select the level of difficulty so that I can play the game.
-    Feature Implementation: Make a level selector page
+    
+     **Feature Implementation**: Make a level selector page
 
     <details><summary>Screenshot</summary>
 
@@ -177,7 +214,7 @@ The lighthouse score is greater than 90 for all criteria and all webpages.
     </details>
 3. As a player, I want to know the rules before the challenge begins.
 
-    Feature Implementation: Display rules on the level page
+     **Feature Implementation**: Display rules on the level page
 
     <details><summary>Screenshot</summary>
     
@@ -185,7 +222,7 @@ The lighthouse score is greater than 90 for all criteria and all webpages.
     </details>
 4. As a player, after reading the rules I want to decide whether to proceed with the current level or abort.
 
-    Feature Implementation: Let the user initiate an action by clicking on PLAY btn
+     **Feature Implementation**: Let the user initiate an action by clicking on PLAY btn
 
     <details><summary>Screenshot</summary>
 
@@ -193,7 +230,7 @@ The lighthouse score is greater than 90 for all criteria and all webpages.
     </details>
 5. As a player, I want to see a clear overview of how far I am in the game, so I can adjust my strategy to win.
 
-    Feature Implementation: Display the time and flips remaining on top of the page
+     **Feature Implementation**: Display the time and flips remaining on top of the page
 
     <details><summary>Screenshot</summary>
     
@@ -201,7 +238,7 @@ The lighthouse score is greater than 90 for all criteria and all webpages.
     </details>
 6. As a player, I want to be able to abort the game anytime I want.
 
-    Feature Implementation: Enable the home button to take back to levels if user wishes to abort in the middle of the game
+     **Feature Implementation**: Enable the home button to take back to levels if user wishes to abort in the middle of the game
 
     <details><summary>Screenshot</summary>
     
@@ -209,7 +246,7 @@ The lighthouse score is greater than 90 for all criteria and all webpages.
     </details>
 7. As a player, after losing the game I should have an option to retry.
 
-    Feature Implementation: Prompt the user to retry when he runs out of time or flips. When confirmed, reload the game with new random assignment of cards
+     **Feature Implementation**: Prompt the user to retry when he runs out of time or flips. When confirmed, reload the game with new random assignment of cards
 
     <details><summary>Screenshot</summary>
     
@@ -217,11 +254,11 @@ The lighthouse score is greater than 90 for all criteria and all webpages.
     </details>
 8. As a player, after winning the game I want to have an option to share my results with others.
 
-    Feature Implementation: Pending, to be covered in the next sprint
+     **Feature Implementation**: Pending, to be covered in the next sprint
     
 9. As a player, after winning the game I want to go to the next level.
 
-    Feature Implementation: Select next level automatically when the user succeeds and take him back to levels page so he can read the rules for the selected level.
+     **Feature Implementation**: Select next level automatically when the user succeeds and take him back to levels page so he can read the rules for the selected level.
 
     <details><summary>Screenshot</summary>
 
@@ -229,11 +266,45 @@ The lighthouse score is greater than 90 for all criteria and all webpages.
     </details>
 10. As a player, after I have passed the maximum difficultly level, I want to know what is coming soon.
 
-    Feature Implementation: Pending, to be covered in the next sprint
+     **Feature Implementation**: Pending, to be covered in the next sprint
 
 11. As a player, if I have new ideas or encountered bugs I should be able to share them with the website owner.
 
-    Feature Implementation: Pending, to be covered in the next sprint
+     **Feature Implementation**: Pending, to be covered in the next sprint
+
+## Browswer compatibility
+
+No broswer related bugs were found.
+
+## Responsiveness
+
+The site is fully responsive upto minimum screen width of 320 px, which corresponds to iphone 5. For desktop version, the grid layout expands maximum upto 1420 px.
+
+<details><summary>Full screen width view</summary>
+
+![full screen width view](docs/full-width-view.png)
+    
+</details>
+
+<details><summary>iPhone 5 view</summary>
+
+![iphone 5 view](docs/iphone-5-view.png)
+    
+</details>
+
+## Bugs
+
+
+| **Bug** | **Fix** |
+| ----------- | ----------- |
+| The slider element is interactive thus giving user the idea of manipulating it | Grey out and disable slider element |
+| The grid layout does not appear as cards, appears as just horizontal lines | Use **autofit** with **mixmax** while forcing min height of a card |
+| Images are not assigned to a pair of cards, leading to one unpaired card | In the same for-loop assign single image to two cards before moving to next image assignment |
+| All cards are flipped back instead of last two un-matched cards | Implement a flip counter and reset it to zero after checking conditions |
+| The user can flip back the matched cards | disable click on revealed cards |
+| The user can keep clicking on other cards while un-matched cards are waiting to be flipped back | During waiting period, disable click event on all cards |
+| After the user completes level 5, he is redirected to level 6 on level selector page, which does not exist| add a logic to level selector page to prevent overflow |
+| When the levels page is loaded first time, no levels are selected and clicking on play buttn leads to error | Make sure at least one level stay selected all the time no matter if the page is revisited or visited first time. |
 
 # Future Work
 
