@@ -309,7 +309,7 @@ The site is fully responsive upto minimum screen width of 320 px, which correspo
 # Future Work
 
 - Instead of an alert, implement dialog or modal for better user experience
-- Implement features related to pending user stories which is 8,10,11 which correspond to opportunities F,G and D as described under [Feasibility matrix](docs/feasibility-matrix.png)
+- Implement features related to pending user stories which is 8,10,11 which correspond to opportunities F,G and D as described under [Feasibility matrix](docs/feasibility-matrix.png). As mentioned earlier they are about the user's ability to share results on social media link, see what else is coming soon and provide feedback in case of any bugs found. The feasibility matrix indicates that they were too broad to include in first sprint, but they are critical as a site owner to improve the online presence and must be included in next sprint.
 
 
 # References
