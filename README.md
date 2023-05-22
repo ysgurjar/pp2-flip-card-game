@@ -158,7 +158,7 @@ You can clone the repository by following these steps:
 - The site was tested for accessibility and contrast errors on [wave](!https://wave.webaim.org/) --> No common errors or contrast errors
     - index.html [results](https://wave.webaim.org/report#/https://ysgurjar.github.io/pp2-flip-card-game/index.html)
     - levels.html [results](https://wave.webaim.org/report#/https://ysgurjar.github.io/pp2-flip-card-game/levels.html)
-    - game.html [results](https://ysgurjar.github.io/pp2-flip-card-game/game.html)
+    - game.html [results](https://wave.webaim.org/report#/https://ysgurjar.github.io/pp2-flip-card-game/game.html)
     
 - No critical warning are present in all cases
 
