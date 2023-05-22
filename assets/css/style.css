@@ -57,7 +57,7 @@ header h1 {
 
 .wave-container {
     height: clamp(50px, 2.5vw, 100px);
-    background-image: url("../images/wavesOpacity.svg");
+    background-image: url("../images/waves-opacity.svg");
 }
 /* ===================== 
    index.html page STYLES 
@@ -188,8 +188,8 @@ header h1 {
 /* media queries */
 @media screen and (max-width: 440px) {
     #cards-wrapper {
-        grid-template-columns: repeat(auto-fit, minmax(50px, 2fr));
-        grid-template-rows: repeat(auto-fit, minmax(70px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(100px, 2fr));
+        
         grid-auto-rows: minmax(160px, 1fr);
         gap: 5px;
     }
