@@ -19,7 +19,7 @@
 3. [The Structure and Skeleton Plane](#the-structure-plane)
     1. [Game logic](#game-logic)
     2. [Wireframe](#wireframe)
-4. [Deployment]() 
+4. [Deployment](#deployment) 
 5. [Testing](#testing)
     1. [Code validation](#code-validation)
     2. [Performance](#performance)
