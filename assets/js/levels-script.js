@@ -45,7 +45,6 @@ let levelData={
         flipsMax:99,
         timeMax:"07:00"
     }
-
 };
 
 let predefinedLevel=window.localStorage.getItem("level");

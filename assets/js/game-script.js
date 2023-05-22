@@ -379,8 +379,6 @@ function gameOver(gameStatus, currLevel) {
             window.location.href = "levels.html";
         }
     }
-
-
 }
 
 function checkRemainingTime() {
@@ -413,7 +411,6 @@ function checkAllCardsRevealed() {
         return true;
     } else {
         return false;
-
     }
 }
 /**
