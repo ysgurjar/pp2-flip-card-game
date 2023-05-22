@@ -297,14 +297,14 @@ The site is fully responsive upto minimum screen width of 320 px, which correspo
 
 | **Bug** | **Fix** |
 | ----------- | ----------- |
-| The slider element is interactive thus giving user the idea of manipulating it | Grey out and disable slider element |
+| The slider element is interactive thus giving the user the idea of manipulating it | Grey out and disable the slider element |
 | The grid layout does not appear as cards, appears as just horizontal lines | Use **autofit** with **mixmax** while forcing min height of a card |
-| Images are not assigned to a pair of cards, leading to one unpaired card | In the same for-loop assign single image to two cards before moving to next image assignment |
-| All cards are flipped back instead of last two un-matched cards | Implement a flip counter and reset it to zero after checking conditions |
+| Images are not assigned to a pair of cards, leading to one unpaired card | In the same for-loop assign a single image to two cards before moving to the next image assignment |
+| All cards are flipped back instead of the last two un-matched cards | Implement a flip counter and reset it to zero after checking conditions |
 | The user can flip back the matched cards | disable click on revealed cards |
-| The user can keep clicking on other cards while un-matched cards are waiting to be flipped back | During waiting period, disable click event on all cards |
-| After the user completes level 5, he is redirected to level 6 on level selector page, which does not exist| add a logic to level selector page to prevent overflow |
-| When the levels page is loaded first time, no levels are selected and clicking on play buttn leads to error | Make sure at least one level stay selected all the time no matter if the page is revisited or visited first time. |
+| The user can keep clicking on other cards while un-matched cards are waiting to be flipped back | During the waiting period, disable the click event on all cards |
+| After the user completes level 5, he is redirected to level 6 on the level selector page, which does not exist| Add logic to the level selector page to prevent overflow |
+| When the levels page is loaded the first time, no levels are selected and clicking on the play button leads to an error | Make sure at least one level stay selected all the time no matter if the page is revisited or visited the first time. |
 
 # Future Work
 
@@ -314,11 +314,11 @@ The site is fully responsive upto minimum screen width of 320 px, which correspo
 
 # References
 
-The flipcard CSS effect is taken from [Jefferson Cuarta](https://jefferson-cuartas.medium.com/how-to-create-a-flip-card-effect-using-javascript-767dd945210c).
+The flip card CSS effect is from [Jefferson Cuarta](https://jefferson-cuartas.medium.com/how-to-create-a-flip-card-effect-using-javascript-767dd945210c).
 
-The timer function is taken from the following [Codepen](https://codepen.io/ishanbakshi/pen/pgzNMv) created by Shashan Bakshi.
+The timer function is from the following [Codepen](https://codepen.io/ishanbakshi/pen/pgzNMv) created by Shashan Bakshi.
 
-All the images are taken from [pngwing](https://www.pngwing.com/) website that are distributed under Non-commercial use, DMCA licence and does not require individual credit.
+All the images are taken from [pngwing](https://www.pngwing.com/) website and contains images distributed under Non-commercial use, DMCA licence and do not require individual credit.
 
 ### Special thanks to my mentor M.Shami for support and guidance.
  
